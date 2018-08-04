@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_04_013748) do
+ActiveRecord::Schema.define(version: 2018_08_04_050254) do
 
   create_table "clubs", force: :cascade do |t|
     t.string "title"
@@ -21,10 +21,8 @@ ActiveRecord::Schema.define(version: 2018_08_04_013748) do
 
   create_table "comment_infos", force: :cascade do |t|
     t.string "content"
-    t.integer "info_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["info_id"], name: "index_comment_infos_on_info_id"
   end
 
   create_table "commentclubs", force: :cascade do |t|
@@ -35,12 +33,28 @@ ActiveRecord::Schema.define(version: 2018_08_04_013748) do
     t.index ["club_id"], name: "index_commentclubs_on_club_id"
   end
 
+  create_table "commentinfos", force: :cascade do |t|
+    t.string "content"
+    t.integer "info_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["info_id"], name: "index_commentinfos_on_info_id"
+  end
+
   create_table "commentmatchings", force: :cascade do |t|
     t.string "content"
     t.integer "matching_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["matching_id"], name: "index_commentmatchings_on_matching_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "notice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notice_id"], name: "index_comments_on_notice_id"
   end
 
   create_table "coreviews", force: :cascade do |t|

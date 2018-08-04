@@ -5,6 +5,7 @@ class InfoController < ApplicationController
   
   def index_info
     @info = Info.find(params[:info_id])
+    @commentinfos = @info.commentinfos
   end
 
   def new_info

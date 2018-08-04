@@ -1,3 +1,3 @@
 class Info < ApplicationRecord
-    has_many:comments, :dependent=>:destroy
+    has_many:commentinfos, :dependent=>:destroy
 end

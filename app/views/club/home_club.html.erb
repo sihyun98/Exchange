@@ -12,6 +12,6 @@ Information about Korean school clubs where foreign exchange students can partic
 <a href="/club/new_club">새 글 쓰기</a>
 
 <% @clubs.each do |p| %>
-  <a href="/club/index_club/<%= p.id %>"> <%= p.title %> </a> <br>
+  제목: <a href="/club/index_club/<%= p.id %>"> <%= p.title %> </a> <br>
   <hr />
 <% end %>

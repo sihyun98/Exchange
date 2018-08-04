@@ -6,3 +6,19 @@
     <input type="submit" name="" value="삭제">
   </form>
   <hr />
+  
+  
+  <form action="/infos/index_info/<%= @info.id%>/commentinfos/create" method='get'>
+    <input type='text' name='input_comment'>
+    <input type='submit' value='댓글 작성'>
+</form>
+
+
+<% @commentinfos.each do |comment| %>
+    <p><%= comment.content %></p>
+    <a href='/infos/index_info/<%= @info.id %>/commentinfos/destroy/<%= comment.id %>’ data-confirm='댓글을 삭제합니다.'>
+        [댓글삭제] </a>
+    <a href="/infos/index_info/<%= @info.id %>/commentinfos/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+<% end %>
+
+

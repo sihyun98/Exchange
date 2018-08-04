@@ -14,4 +14,17 @@ class CoreviewsController < ApplicationController
    
     redirect_to "/review/index_review/#{params[:review_id]}"    
   end
+  
+  def edit
+      @review=Review.find(params[:review_id])
+      @coreview = Coreview.find(params[:coreviews_id])
+  end
+
+  def update
+    @coreview = Coreview.find(params[:coreviews_id])
+    @coreview.content = params[:input_comment]
+    @coreview.save
+    
+    redirect_to "/review/index_review/#{params[:review_id]}"  
+  end
 end

@@ -5,3 +5,16 @@
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <input type="submit" name="" value="삭제">
   </form>
+  
+  
+  <form action="/notices/index_notice/<%= @notice.id %>/comments/create" method='get'>
+    <input type='text' name='input_comment'>
+    <input type='submit' value='댓글 작성'>
+</form>
+
+<% @comments.each do |p| %>
+  <p><%= p.content %></p>
+  <a href="/notices/index_notice/<%= @notice.id %>/comments/destroy/<%= p.id %>" data-confirm='댓글을 삭제합니다.'>
+  [댓글삭제] </a>
+  <a href="/notices/index_notice/<%= @notice.id %>/comments/edit/<%= p.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+<% end %>

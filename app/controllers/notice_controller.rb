@@ -5,6 +5,7 @@ class NoticeController < ApplicationController
   
   def index_notice
      @notice = Notice.find(params[:notice_id])
+     @comments = @notice.comments
   end
 
   def new_notice

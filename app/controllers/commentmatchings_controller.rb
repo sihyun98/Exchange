@@ -14,6 +14,19 @@ class CommentmatchingsController < ApplicationController
     @commentmatching.destroy
     
     redirect_to"/matching/index_matching/#{params[:matching_id]}"
-    
   end
+  
+   def edit
+      @matching=Matching.find(params[:matching_id])
+      @commentmatching = Commentmatching.find(params[:commentmatchings_id])
+
+  end
+
+  def update
+    @commentmatching = Commentmatching.find(params[:commentmatchings_id])
+    @commentmatching.content = params[:input_comment]
+    @commentmatching.save
+    redirect_to "/matching/index_matching/#{params[:matching_id]}"  
+  end
+  
 end
