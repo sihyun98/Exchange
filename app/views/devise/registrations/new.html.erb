@@ -21,6 +21,21 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :age %>
+    <%= f.number_field :age, autofocus: true, class: 'form-control' %>
+  </div>
+  
+  <div class="btn-group" data-toggle="buttons">
+    <p style="margin-bottom:0;"><%= f.label :gender %></p>
+      <label class="radio_button"> Male
+       <%= f.radio_button :gender, 'Male', checked: true %>
+      </label>
+      <label class="radio_button active"> Female
+       <%= f.radio_button :gender, 'Female', checked: true %>
+      </label>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

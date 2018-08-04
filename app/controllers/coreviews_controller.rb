@@ -9,7 +9,7 @@ class CoreviewsController < ApplicationController
     end
   
   def destroy
-    @coreview = Coreview.find(params[:coreview_id])     
+    @coreview = Coreview.find(params[:coreviews_id])     
     @coreview.destroy           
    
     redirect_to "/review/index_review/#{params[:review_id]}"    

@@ -10,10 +10,10 @@ class CommentmatchingsController < ApplicationController
   end
 
   def destroy
-    @commentmatching = Commentmatching.find(params[])
+    @commentmatching = Commentmatching.find(params[:commentmatchings_id])
     @commentmatching.destroy
     
-    redirect_to'/matchings/index_matching/'
+    redirect_to"/matching/index_matching/#{params[:matching_id]}"
     
   end
 end

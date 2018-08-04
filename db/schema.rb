@@ -10,13 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_23_172035) do
+ActiveRecord::Schema.define(version: 2018_08_04_013748) do
 
   create_table "clubs", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comment_infos", force: :cascade do |t|
+    t.string "content"
+    t.integer "info_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["info_id"], name: "index_comment_infos_on_info_id"
+  end
+
+  create_table "commentclubs", force: :cascade do |t|
+    t.string "content"
+    t.integer "club_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_commentclubs_on_club_id"
+  end
+
+  create_table "commentmatchings", force: :cascade do |t|
+    t.string "content"
+    t.integer "matching_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["matching_id"], name: "index_commentmatchings_on_matching_id"
+  end
+
+  create_table "coreviews", force: :cascade do |t|
+    t.string "content"
+    t.integer "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_coreviews_on_review_id"
   end
 
   create_table "infos", force: :cascade do |t|
@@ -62,11 +94,22 @@ ActiveRecord::Schema.define(version: 2018_07_23_172035) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digit"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "age"
+    t.string "gender"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

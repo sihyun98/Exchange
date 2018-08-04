@@ -15,7 +15,8 @@
 
 <% @commentmatchings.each do |comment| %>
     <p><%= comment.content %></p>
-    
+    <a href="/matchings/index_matching/<%=@matching.id%>/commentmatchings/destroy/<%= comment.id %>" data-confirm='댓글을 삭제합니다.'> 
+    [댓글 삭제] </a>
 <% end %>
 
  

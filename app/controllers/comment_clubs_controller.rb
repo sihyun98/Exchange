@@ -11,6 +11,9 @@ class CommentClubsController < ApplicationController
   end
 
   def destroy
-  
+    @commentclub = Commentclub.find(params[:commentclubs_id])  
+    @commentclub.destroy         
+   
+    redirect_to "/club/index_club/#{params[:club_id]}"     
   end
 end

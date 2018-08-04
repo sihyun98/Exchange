@@ -1,7 +1,17 @@
 <h1>My page</h1></br>
 
 <% if user_signed_in? %>
-    Email : <%=current_user.email%> </br>
+    <p>Email : <%= current_user.email %></p>
+    <% if current_user.gender.present? %>
+        <p>Gender : <%= current_user.gender %></p>
+    <% else %>
+        <p>Gender : (Please update your information!)</p>
+    <% end %>
+    <% if current_user.age.present? %>
+        <p>Age : <%= current_user.age %></p>
+    <% else %>
+        <p>Age : (Please update your information!)</p>
+    <% end %>
 <% end %></br></br>
 
-<a href= '/page/edit_page'> edit | 수정하기 </a>
+<a href="/users/edit" class="btn btn-default">프로필수정</a></br>
