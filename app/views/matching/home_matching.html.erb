@@ -1,0 +1,15 @@
+<h1>Matching Groups| 매칭</h1></h1>
+<br/>
+한국 학생들과 외국에서 온 교환학생들이 원하는 목표의 소모임을 만드는 공간입니다! 
+<br/>
+인원과 소모임목적은 모두 자유이고, 댓글을 통해 자유롭게 팀멤버 신청을 하여 소모임을 만들어 활동하면 됩니다. 
+<br/>
+It is a space for Korean students and exchange students from abroad to make free gatherings! 
+<br/>
+You freely make gatherings and also can apply for team members through comments.
+<br/>
+<a href="/matching/new_matching">새 글 쓰기</a>
+<br/>
+<% @matchings.each do |p|%>
+ <a href="/matching/index_matching/<%=p.id%>"><%=p.title%></a>
+<% end %>

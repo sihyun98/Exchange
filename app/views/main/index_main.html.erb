@@ -1,0 +1,20 @@
+<% if user_signed_in? %>
+    <%=current_user.email%> 님 환영합니다!</br>
+    <a href='/page/home_page'>My Page | 내 페이지 </a> </br>
+    <a href='/users/sign_out' data-method='delete'>로그아웃</a>
+<% else %>
+    <a href='/users/sign_in'>로그인</a>
+    <a href='/users/sign_up'>회원가입</a>
+<% end %></br></br>
+
+<a href='/notice/home_notice'> Notice | 공지사항 </a> </br>
+
+Preparation for Exchange Student Program | 교환학생프로그램 준비 </br>
+<a href='/review/home_review'> Review | 후기</a> </br>
+<a href='/question/home_question'> Question | 질문</a> </br></br>
+
+
+Communication (In Korea) | 소통 </br>
+<a href='/info/home_info'>Sharing Info | 정보공유</a> </br>
+<a href='/matching/home_matching'>Matching Groups | 소모임</a> </br>
+<a href='/club/home_club'>Clubs | 학교 동아리</a>

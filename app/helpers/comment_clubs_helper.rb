@@ -1,0 +1,2 @@
+module CommentClubsHelper
+end

@@ -1,0 +1,25 @@
+
+  제목 : <%= @club.title %><br>
+  내용 : <%= @club.content %>
+  <a href="/club/edit_club/<%= @club.id %>">[수정]</a>
+  <form action="/club/destroy_club/<%= @club.id %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="submit" name="" value="삭제">
+  </form>
+  <hr />
+  
+ 
+<form action="/clubs/index_club/<%= @club.id %>/comment_clubs/create" method='get'>
+    <input type='text' name='input_comment'>
+    <input type='submit' value='댓글 작성'>
+</form>
+ 
+  
+<% @commentclubs.each do |comment| %>
+    <p><%= comment.content %></p>
+  
+   
+<% end %>
+
+
+   

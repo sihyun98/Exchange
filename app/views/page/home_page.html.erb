@@ -1,0 +1,7 @@
+<h1>My page</h1></br>
+
+<% if user_signed_in? %>
+    Email : <%=current_user.email%> </br>
+<% end %></br></br>
+
+<a href= '/page/edit_page'> edit | 수정하기 </a>

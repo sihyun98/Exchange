@@ -1,0 +1,7 @@
+<h1>새 글 쓰기</h1>
+<form action="/notice/create_notice" method="post">
+ <%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
+  제목 : <input type="text" name="notice_title" value=""><br />
+  내용 : <textarea name="notice_content" rows="8" cols="80"></textarea><br />
+ <input type="submit" value="제출">
+</form>

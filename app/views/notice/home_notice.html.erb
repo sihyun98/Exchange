@@ -1,0 +1,22 @@
+<h1>Notice | 공지사항</h1>
+<br/>
+NewBie에서 NewBie회원들에게 제공하는 공지사항란입니다! 자주 들어오는 질문들과 교환학생에 관련된 기본적인 매뉴얼들이 제공되는 페이지입니다. <br/>
+원하시는 정보가 있다면 <a href = "/faq"> FAQ </a>에 올려주세요! 빠른 시일내에 답변매뉴얼을 올리도록 하겠습니다. 
+<br/><br/>
+This page is a notice bulletin where NewBie is providing necessary information for NewBie members. Frequently asked questions and basic manuals related to exchange program are available in this page.<br/>
+If you have extra information in need, please post it in  <a href = "/faq"> FAQ </a>! We will try our best to provide a feedback as soon as possible. 
+
+
+<br/><a href="/notice/new_notice">새 글 쓰기</a></br></br>
+
+
+<% @notices.each do |p|%>
+  <a href="/notice/index_notice/<%=p.id%>"><%=p.title%></a>
+<% end %>
+
+<div class="search-container">
+  <form action="/action_page.php">
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,21 @@
+<h1>질문 게시판 입니다</h1>
+<a href="/question/new_question">새 글쓰기</a></br></br>
+
+<% @questions.each do |p|%>
+  제목 : <%= p.title %><br>
+  내용 : <%= p.content %>
+   <a href="/question/edit_question/<%= p.id %>">[수정]</a> 
+   <form action="/question/destroy_question/<%= p.id %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="submit" name="" value="삭제">
+  </form>
+  <hr />
+  <hr />
+<% end %>
+
+<div class="search-container">
+  <form action="/action_page.php">
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit">Submit</button>
+  </form>
+</div>

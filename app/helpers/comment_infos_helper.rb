@@ -1,0 +1,2 @@
+module CommentInfosHelper
+end

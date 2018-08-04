@@ -1,0 +1,13 @@
+<h1>Share Information | 정보 공유</h1>
+<br/>
+교환학생에 관련된 기본적인 정보들을 공유하는 곳입니다! 
+<br/>
+Share necessary information!
+<br/>
+<br/>
+
+<a href="/info/new_info">새 글 쓰기</a>
+
+<% @infos.each do |p|%>
+ <a href="/info/index_info/<%= p.id %>"><%= p.title %></a>
+<% end %>

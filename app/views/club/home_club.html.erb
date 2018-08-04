@@ -1,0 +1,17 @@
+<h1>Clubs | 학교 동아리</h1>
+
+<br/>
+교환학생프로그램과 관련된 동아리들을 소개하는 페이지입니다! 
+<br/>
+또한 해외 교환학생들이 참가할 수 있는 한국학교동아리들에 대한 정보도 제공됩니다.
+<br/>
+This page introduces the clubs related to the exchange student program! 
+<br/>
+Information about Korean school clubs where foreign exchange students can participate is also provided.
+<br/>
+<a href="/club/new_club">새 글 쓰기</a>
+
+<% @clubs.each do |p| %>
+  <a href="/club/index_club/<%= p.id %>"> <%= p.title %> </a> <br>
+  <hr />
+<% end %>
