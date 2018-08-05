@@ -16,5 +16,4 @@
 <% @coreviews.each do |comment| %>
     <p><%= comment.content %></p>
     <a href='/reviews/index_review/<%= @review.id %>/coreviews/destroy/<%= comment.id %>’ data-confirm='댓글을 삭제합니다.'>[댓글삭제]</a></br>
-    <a href="/reviews/index_review/<%= @review.id %>/coreviews/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
 <% end %>

@@ -1,15 +1,15 @@
-<h1>후기 작성페이지 입니다</h1>
+<h1>Review | 후기</h1> </br>
+
+교환학생 프로그램 경험이 있는 학생들이 </br>
 <a href="/review/new_review"> 새 글 쓰기 </a></br></br>
 
 <% @reviews.each do |p|%>
 <a href="/review/index_review/<%=p.id %>"> <%= p.title %></a>
 <% end %>
 
-
-
-<div class="search-container">
-  <form action="/action_page.php">
-    <input type="text" placeholder="Search.." name="search">
-    <button type="submit">Submit</button>
-  </form>
-</div>
+<%= search_form_for @q do |f| %>
+  <%= f.label :title_cont %>
+  <%= f.search_field :title_cont %>
+  
+  <%= f.submit %>
+<% end %>

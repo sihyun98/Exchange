@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  
+  
  
   devise_for :users
   get 'club/home_club'
@@ -58,7 +59,7 @@ Rails.application.routes.draw do
   get 'page/save_page'
   
   
-  get 'review/home_review'
+  get 'review/home_review', as: 'reviews'
   get 'review/new_review'
   post 'review/create_review'
   get 'review/index_review/:review_id' => 'review#index_review'
@@ -77,6 +78,7 @@ Rails.application.routes.draw do
   get 'question/edit_question/:question_id' => 'question#edit_question'
   post 'question/update_question/:question_id' => 'question#update_question'
   post 'question/destroy_question/:question_id' => 'question#destroy_question'
+  get 'question/index_question/:question_id' => 'question#index_question'
   
   root 'main#index_main'
   get 'main/index_main'

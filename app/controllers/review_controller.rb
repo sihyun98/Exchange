@@ -1,6 +1,9 @@
 class ReviewController < ApplicationController
+  
   def home_review
-    @reviews = Review.all
+    @q = Review.ransack(params[:q])
+    @reviews = @q.result(distict: true)
+    # @reviews = Review.all
   end
 
   def index_review
