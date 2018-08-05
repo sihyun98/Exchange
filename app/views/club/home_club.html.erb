@@ -3,15 +3,23 @@
 <br/>
 교환학생프로그램과 관련된 동아리들을 소개하는 페이지입니다! 
 <br/>
-또한 해외 교환학생들이 참가할 수 있는 한국학교동아리들에 대한 정보도 제공됩니다.
+또한 해외 교환학생들이 참가할 수 있는 한국학교동아리들에 대한 정보도 제공됩니다.</br>
 <br/>
 This page introduces the clubs related to the exchange student program! 
 <br/>
-Information about Korean school clubs where foreign exchange students can participate is also provided.
+Information about Korean school clubs where foreign exchange students can participate is also provided.</br>
 <br/>
-<a href="/club/new_club">새 글 쓰기</a>
+<a href="/club/new_club">새 글 쓰기</a></br></br>
 
 <% @clubs.each do |p| %>
-  제목: <a href="/club/index_club/<%= p.id %>"> <%= p.title %> </a> <br>
+  <a href="/club/index_club/<%= p.id %>"> <%= p.title %> </a> 작성된 시간 : <%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %> </br>
+  
   <hr />
+<% end %></br>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :Search %>
+  <%= f.search_field :title_cont %>
+  
+  <%= f.submit %>
 <% end %>

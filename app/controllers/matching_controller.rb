@@ -1,6 +1,7 @@
 class MatchingController < ApplicationController
   def home_matching
-    @matchings = Matching.all
+    @q = Matching.ransack(params[:q])
+    @matchings = @q.result(distict: true)
   end
   
   def index_matching

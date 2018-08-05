@@ -1,6 +1,7 @@
 class InfoController < ApplicationController
   def home_info
-    @infos = Info.all
+    @q = Info.ransack(params[:q])
+    @infos = @q.result(distict: true)
   end
   
   def index_info

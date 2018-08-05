@@ -1,6 +1,7 @@
 class ClubController < ApplicationController
   def home_club
-    @clubs= Club.all
+    @q = Club.ransack(params[:q])
+    @clubs = @q.result(distict: true)
   end
 
   def index_club

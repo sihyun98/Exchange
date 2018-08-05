@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
  
   devise_for :users
-  get 'club/home_club'
+  get 'club/home_club', as: 'clubs'
   get 'club/new_club'
   post 'club/create_club'
   get 'club/edit_club/:club_id' => 'club#edit_club'
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'clubs/index_club/:club_id/comment_clubs/edit/:commentclubs_id' =>'comment_clubs#edit'
   post 'clubs/index_club/:club_id/comment_clubs/update/:commentclubs_id' =>'comment_clubs#update'
   
-  get 'matching/home_matching'
+  get 'matching/home_matching', as: 'matchings'
   get 'matching/new_matching'
   post 'matching/create_matching'
   get 'matching/edit_matching/:matching_id' => 'matching#edit_matching'
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   post 'matchings/index_matching/:matching_id/commentmatchings/update/:commentmatchings_id' =>'commentmatchings#update'
   
   
-  get 'info/home_info'
+  get 'info/home_info', as: 'infos'
   get 'info/new_info'
   post 'info/create_info'
   get 'info/edit_info/:info_id' => 'info#edit_info'
@@ -72,7 +72,7 @@ Rails.application.routes.draw do
   post 'reviews/index_review/:review_id/coreviews/update/:coreviews_id' =>'coreviews#update'
   
   
-  get 'question/home_question'
+  get 'question/home_question', as: 'questions'
   get 'question/new_question'
   post 'question/create_question'
   get 'question/edit_question/:question_id' => 'question#edit_question'

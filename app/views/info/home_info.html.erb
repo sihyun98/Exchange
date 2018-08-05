@@ -6,8 +6,15 @@ Share necessary information!
 <br/>
 <br/>
 
-<a href="/info/new_info">새 글 쓰기</a>
+<a href="/info/new_info">새 글 쓰기</a></br></br>
 
 <% @infos.each do |p|%>
- <a href="/info/index_info/<%= p.id %>"><%= p.title %></a>
+ <a href="/info/index_info/<%= p.id %>"><%= p.title %></a> 작성된 시간 : <%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></br>
+<% end %></br>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :Search %>
+  <%= f.search_field :title_cont %>
+  
+  <%= f.submit %>
 <% end %>

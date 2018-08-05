@@ -1,5 +1,6 @@
  제목 : <%= @review.title %><br>
-  내용 : <%= @review.content %> <br>
+  내용 : <%= @review.content %>
+  작성된 시간 : <%= @review.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %>
   <a href="/review/edit_review/<%= @review.id %>">[수정]</a> 
   <form action="/review/destroy_review/<%= @review.id %>" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>

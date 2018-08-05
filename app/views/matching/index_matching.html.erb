@@ -1,5 +1,6 @@
  제목 : <%= @matching.title %><br>
-  내용 : <%= @matching.content %>
+  내용 : <%= @matching.content %> <br>
+  작성된 시간 : <%= @matching.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %>
    <a href="/matching/edit_matching/<%= @matching.id %>">[수정]</a> 
    <form action="/matching/destroy_matching/<%= @matching.id %>" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
