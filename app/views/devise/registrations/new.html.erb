@@ -20,9 +20,19 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
+  
+  <div class="form-group">
+    <%= f.label :name %></br>
+    <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :nationality %></br>
+    <%= f.text_field :nationality, autofocus: true, class: 'form-control' %>
+  </div>
 
   <div class="form-group">
-    <%= f.label :age %>
+    <%= f.label :age %></br>
     <%= f.number_field :age, autofocus: true, class: 'form-control' %>
   </div>
   
@@ -34,7 +44,7 @@
       <label class="radio_button active"> Female
        <%= f.radio_button :gender, 'Female', checked: true %>
       </label>
-  </div>
+  </div></br>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

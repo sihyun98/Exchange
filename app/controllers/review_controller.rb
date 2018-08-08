@@ -1,4 +1,6 @@
 class ReviewController < ApplicationController
+  load_and_authorize_resource
+  before_action :set_review, only: [:home_review, :edit_review, :update_review, :destroy_review]
   
   def home_review
     @q = Review.ransack(params[:q])
@@ -16,7 +18,8 @@ class ReviewController < ApplicationController
   end
 
   def create_review
-    @review = Review.new
+    @review = Review.new(review_params)
+    @review.user_id = current_user.id
     @review.title = params[:review_title]
     @review.content = params[:review_content]
     @review.save

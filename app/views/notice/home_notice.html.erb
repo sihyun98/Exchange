@@ -122,7 +122,7 @@ If you have extra information in need, please post it in  <a href = "/faq"> FAQ 
   <tr>
     <% @notices.each do |p|%>
     <td><a href="/notice/index_notice/<%=p.id%>"> <%= p.title %></a> </td>
-    <td>      </td>
+    <td><%= p.content %></td>
     <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
   </tr>
   <% end %>

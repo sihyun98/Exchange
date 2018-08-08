@@ -69,3 +69,7 @@ gem 'devise'
 
 #검색기능
 gem 'ransack', github: 'activerecord-hackery/ransack'
+
+#권한설정
+gem "cancancan"
+gem "rolify"

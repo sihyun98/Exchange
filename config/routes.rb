@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   
   
  
+  get 'clubs/index_club/:club_id/cocoment_clubs/:club_id/cocomentclubs/create' => 'cocomentclubs#create'
+  get 'cocomentclubs/destroy' => 'cocomentclubs#destroy'
+  get 'cocomentclubs/edit'
+  get 'cocomentclubs/update'
   devise_for :users
   get 'club/home_club', as: 'clubs'
   get 'club/new_club'

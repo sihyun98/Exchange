@@ -2,11 +2,25 @@
 
 <% if user_signed_in? %>
     <p>Email : <%= current_user.email %></p>
+    
+    <% if current_user.name.present? %>
+        <p>Name : <%= current_user.name %></p>
+    <% else %>
+        <p>Name : (Please update your information!)</p>
+    <% end %>
+    
+    <% if current_user.nationality.present? %>
+        <p>Nationality : <%= current_user.nationality %></p>
+    <% else %>
+        <p>Nationality : (Please update your information!)</p>
+    <% end %>
+    
     <% if current_user.gender.present? %>
         <p>Gender : <%= current_user.gender %></p>
     <% else %>
         <p>Gender : (Please update your information!)</p>
     <% end %>
+    
     <% if current_user.age.present? %>
         <p>Age : <%= current_user.age %></p>
     <% else %>

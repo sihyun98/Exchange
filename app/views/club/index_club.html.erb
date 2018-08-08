@@ -22,6 +22,11 @@
     <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/destroy/<%= comment.id %>" data-confirm='댓글을 삭제합니다.'>
         [댓글삭제] </a>
     <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+    
+    <form action="/clubs/index_club.<%=@club.id%>/comment_clubs" method='post'>
+    <input type='text' name='input_comment_1'>
+    <input type='submit' value='답글 작성'>
+    </form>
 <% end %>
  
    

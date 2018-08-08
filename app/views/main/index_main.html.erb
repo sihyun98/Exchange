@@ -25,7 +25,7 @@ body {font-family: "Lato", sans-serif}
     <% if user_signed_in? %>
     <a><%=current_user.email%> 님 환영합니다!</a>
     <% else %>
-    <% end %></li></a>
+    <% end %></a>
    
     <% if user_signed_in? %>
     <a href='/page/home_page' class="w3-bar-item w3-button w3-padding-large w3-hide-small">내 페이지 </a> 
@@ -40,7 +40,7 @@ body {font-family: "Lato", sans-serif}
     <% end %>
     
     <a href='/notice/home_notice' class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Notice | 공지사항 </a>
-    
+    <a href='/friendlist' class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Find Friends | 친구찾기 </a>
     
   </div>
 </div>

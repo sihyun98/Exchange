@@ -94,32 +94,36 @@ body {font-family: "Lato", sans-serif}
     <a href='/users/sign_up' class="w3-bar-item w3-button w3-padding-large w3-hide-small">회원가입</a>
     <% end %>
     
-    <a href='/notice/home_notice' class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Notice | 공지사항 </a>
+    <a href='/notice/home_notice' class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Notice | 공지사�� </a>
     
     
   </div>
 </div>
-
 <br><br><br><br><br>
+
 <h1>Review | 후기</h1> </br>
 
-<h3>교환학생 프로그램 경험이 있는 학생들이다람쥐</h3> </br></br></br></br>
+<h3>교환학생 프로그램 경험이 있는 학생들이다람쥐</h3>
+</br></br></br></br>
 
 <table>
   <tr>
     <th>Title</th>
     <th>content</th>
     <th>Time</th>
+    <th>User</th>
   </tr>
   <tr>
     <% @reviews.each do |p|%>
     <td><a href="/review/index_review/<%=p.id %>"> <%= p.title %></a> </td>
-    <td>      </td>
+    <td><%= p.content %></td>
     <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
+    <td><%=current_user.name%></td>
   </tr>
   <% end %>
 </table>
 <br><br></br>
+
 <button class="button button5"><a href="/review/new_review">Edit</a></button>
 </br></br></br></br>
 
