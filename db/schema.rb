@@ -83,8 +83,10 @@ ActiveRecord::Schema.define(version: 2018_08_08_130130) do
   create_table "matchings", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_matchings_on_user_id"
   end
 
   create_table "notices", force: :cascade do |t|

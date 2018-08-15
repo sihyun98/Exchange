@@ -5,11 +5,8 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.text :content
       t.integer :user_id
       t.belongs_to :user
-      
 
       t.timestamps
-      
-      
     end
   end
 end

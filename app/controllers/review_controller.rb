@@ -21,7 +21,7 @@ class ReviewController < ApplicationController
   def create_review
      
     @review = Review.new(review_params)
-    @review.user_id = current_user.id
+    @review.user_id= current_user.id
    
     if @review.save
     else
@@ -57,7 +57,7 @@ class ReviewController < ApplicationController
   end
   
   def set_review
-      @review = Review.find(params[:reveiw_id])
+      @review = Review.find(params[:review_id])
   end
 
   

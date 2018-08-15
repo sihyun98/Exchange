@@ -1,48 +1,62 @@
 class MatchingController < ApplicationController
-  load_and_authorize_resource
+ load_and_authorize_resource
+  before_action :set_matching, only: [:index_matching, :edit_matching, :update_matching, :destroy_matching]
+ 
   
   def home_matching
     @q = Matching.ransack(params[:q])
     @matchings = @q.result(distict: true)
-  end
-  
-  def index_matching
-   @matching = Matching.find(params[:matching_id])
-   @commentmatchings = @matching.commentmatchings
+    @matchings= Matching.all
   end
 
+  def index_matching
+    @commentmatchings = @matching.commentmatchings
+  end
+
+
   def new_matching
+     @matching = Matching.new
   end
 
   def create_matching
-    @matching = Matching.new
+     
+    @matching = Matching.new(matching_params)
     @matching.user_id = current_user.id
-    @matching.title = params[:matching_title]
-    @matching.content = params[:matching_content]
+   
     if @matching.save
     else
     end
-
-    redirect_to '/matching/home_matching'
+     
+     redirect_to '/matching/home_matching'
   end
 
   def edit_matching
-    @matching = Matching.find(params[:matching_id])
+
   end
 
   def update_matching
-    @matching = Matching.find(params[:matching_id])
-    @matching.title = params[:matching_title]
-    @matching.content = params[:matching_content]
-    @matching.save
-
+    @matching.update(matching_params)
+    if @matching.save
+    else
+    end
+    
      redirect_to :controller => 'matching', :action => 'index_matching'
   end
 
   def destroy_matching
-    @matching = Matching.find(params[:matching_id])
     @matching.destroy
 
     redirect_to '/matching/home_matching'
+  end
+  
+  
+  private
+  
+  def matching_params
+    params.require(:matching).permit(:title, :content, :user_id)
+  end
+  
+  def set_matching
+      @matching = Matching.find(params[:matching_id])
   end
 end
