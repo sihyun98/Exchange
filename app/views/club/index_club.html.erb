@@ -1,13 +1,20 @@
 
   제목 : <%= @club.title %><br>
   내용 : <%= @club.content %>
+  작성자 : <%=@club.user.name%>
   작성된 시간 : <%= @club.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %>
+  
+  <% if can? :edit_club, @club %>
   <a href="/club/edit_club/<%= @club.id %>">[수정]</a>
-  <form action="/club/destroy_club/<%= @club.id %>" method="post">
+  <% end %>
+  
+  <% if can? :destroy_club, @club %>
+    <form action="/club/destroy_club/<%= @club.id %>" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <input type="submit" name="" value="삭제">
-  </form>
-  <hr />
+    </form>
+    <hr />
+  <%end%>
   
  
 <form action="/clubs/index_club/<%= @club.id %>/comment_clubs/create" method='get'>
@@ -18,15 +25,17 @@
   
 <% @commentclubs.each do |comment| %>
     <p><%= comment.content %></p>
- 
-    <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/destroy/<%= comment.id %>" data-confirm='댓글을 삭제합니다.'>
-        [댓글삭제] </a>
-    <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+    <p><%= comment.user.name %> </p>
+     
+    <% if can? :destroy, comment %>
+    <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/destroy/<%= comment.id %>" data-confirm='댓글을 삭제합니다.'> [댓글삭제] </a>
+    <% end %>
     
-    <form action="/clubs/index_club.<%=@club.id%>/comment_clubs" method='post'>
-    <input type='text' name='input_comment_1'>
-    <input type='submit' value='답글 작성'>
-    </form>
+    <% if can? :edit, comment %>
+    <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+    <%end%>
+    
+   
 <% end %>
  
    

@@ -3,6 +3,7 @@ class CreateCommentmatchings < ActiveRecord::Migration[5.2]
     create_table :commentmatchings do |t|
       t.string :content
       t.belongs_to :matching
+      t.belongs_to :user
 
       t.timestamps
     end

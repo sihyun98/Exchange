@@ -105,30 +105,43 @@ body {font-family: "Lato", sans-serif}
 
 <table>
   <tr>
-    <th>Title: <%= @notice.title %></th>
-    <th>Time: <%= @notice.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %> </th>
-    <th>User</th>
+     Time: <%= @notice.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %>
+     User:<%=@notice.user.name %>
+     Title: <%= @notice.title %>
+     내용 : <%= @notice.content %>
   </tr>
   
   </br></br>
 
-  내용 : <%= @notice.content %>
+  <% if can? :edit_notice, @notice %>
   <a href="/notice/edit_notice/<%= @notice.id %>">[수정]</a> 
-  </br></br>
-  <form action="/notice/destroy_notice/<%= @notice.id %>" method="post">
+  <% end %>
+  
+  <% if can? :destroy_notice, @notice %>
+    <form action="/notice/destroy_notice/<%= @notice.id %>" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <input type="submit" name="" value="삭제">
-  </form>
-  
+    </form>
   </br></br>
+  <%end%>
+  
   <form action="/notices/index_notice/<%= @notice.id %>/comments/create" method='get'>
     <input type='text' name='input_comment'>
     <input type='submit' value='댓글 작성'>
-</form>
-</br></br>
+  </form>
+  </br></br>
+  
+  
 <% @comments.each do |p| %>
   <p><%= p.content %></p>
-  <a href="/notices/index_notice/<%= @notice.id %>/comments/destroy/<%= p.id %>" data-confirm='댓글을 삭제합니다.'>
-  [댓글삭제] </a>
+  <p>댓글 작성자: <%= p.user.name %></p>
+  
+  <% if can? :destroy, p %>
+  <a href="/notices/index_notice/<%= @notice.id %>/comments/destroy/<%= p.id %>" data-confirm='댓글을 삭제합니다.'>[댓글삭제] </a>
+  <%end%>
+  
+  <% if can? :edit, p %>
   <a href="/notices/index_notice/<%= @notice.id %>/comments/edit/<%= p.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+  <%end%>
+  
 <% end %>

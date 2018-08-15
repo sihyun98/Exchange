@@ -1,6 +1,7 @@
 class ReviewController < ApplicationController
   load_and_authorize_resource
   before_action :set_review, only: [:index_review, :edit_review, :update_review, :destroy_review]
+  before_action :authenticate_user!, except: [:home_review]
  
   
   def home_review

@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+  
   def create
-    @comment = Comment.new                        
+    @comment = Comment.new
+    @comment.user_id= current_user.id
     @comment.content = params[:input_comment]                 
     @comment.notice_id = params[:notice_id]
     @comment.save

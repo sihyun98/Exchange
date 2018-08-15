@@ -1,6 +1,7 @@
 class MatchingController < ApplicationController
  load_and_authorize_resource
   before_action :set_matching, only: [:index_matching, :edit_matching, :update_matching, :destroy_matching]
+  before_action :authenticate_user!, except: [:home_matching]
  
   
   def home_matching

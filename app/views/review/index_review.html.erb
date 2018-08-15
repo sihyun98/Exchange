@@ -84,8 +84,9 @@ body {font-family: "Lato", sans-serif}
 </br></br></br></br>
 
 
- <h1> 제목 : <%= @review.title %> </h1><br>
+  <h1> 제목 : <%= @review.title %> </h1><br>
   <h3>내용 : <%= @review.content %></h3>
+  작성자: <%=@review.user.name%>
   <a>작성된 시간 : <%= @review.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></a></br>
   
   
@@ -104,21 +105,23 @@ body {font-family: "Lato", sans-serif}
   <br><br><br>
   
    
-   
-  
-  
-  
-  
-  
   <form action="/reviews/index_review/<%= @review.id %>/coreviews/create" method='get'>
     <input type='text' name='input_comment'>
     <input type='submit' value='댓글 작성'>
-</form>
+  </form>
 
 
 <% @coreviews.each do |comment| %>
     <p><%= comment.content %></p>
-    <a href='/reviews/index_review/<%= @review.id %>/coreviews/destroy/<%= comment.id %>’ data-confirm='댓글을 삭제합니다.'>[댓글삭제]</a><hr>
+    <p>댓글 작성자 : <%=comment.user.name%></p>
+    
+    <% if can? :destroy, comment %>
+    <a href='/reviews/index_review/<%= @review.id %>/coreviews/destroy/<%= comment.id %>’ data-confirm='댓글을 삭제합니다.'>[댓글삭제]</a>
+    <% end %>
+    
+    <% if can? :edit, comment %>
+    <a href="/reviews/index_review/<%= @review.id %>/coreviews/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+    <% end %>
 <% end %>
 
 </body>

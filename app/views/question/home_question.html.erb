@@ -111,6 +111,7 @@ body {font-family: "Lato", sans-serif}
     <th>Title</th>
     <th>content</th>
     <th>Time</th>
+    <th>User</th>
   </tr>
   
   <tr>
@@ -118,6 +119,7 @@ body {font-family: "Lato", sans-serif}
     <td><a href="/question/index_question/<%=p.id%>"><%=p.title%></a> </td>
     <td><%= p.content %></td>
     <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
+    <td><%=p.user.name %></td>
   </tr>
   <% end %>
 </table>

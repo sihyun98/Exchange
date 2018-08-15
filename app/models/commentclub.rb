@@ -1,4 +1,6 @@
 class Commentclub < ApplicationRecord
+    resourcify
+    belongs_to :user
     belongs_to :club
-    has_many :cocommentclubs, :dependent => :destroy 
+    
 end

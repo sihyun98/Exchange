@@ -1,6 +1,9 @@
 class CoreviewsController < ApplicationController
+    load_and_authorize_resource
+    
     def create
-    @coreview = Coreview.new                       
+    @coreview = Coreview.new       
+    @coreview.user_id = current_user.id
     @coreview.content = params[:input_comment]                   
     @coreview.review_id = params[:review_id]
     @coreview.save

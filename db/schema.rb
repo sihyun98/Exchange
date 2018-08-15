@@ -15,16 +15,16 @@ ActiveRecord::Schema.define(version: 2018_08_08_130130) do
   create_table "clubs", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_clubs_on_user_id"
   end
 
   create_table "cocomentclubs", force: :cascade do |t|
     t.string "content"
-    t.integer "commentclub_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["commentclub_id"], name: "index_cocomentclubs_on_commentclub_id"
   end
 
   create_table "comment_infos", force: :cascade do |t|
@@ -35,49 +35,61 @@ ActiveRecord::Schema.define(version: 2018_08_08_130130) do
 
   create_table "commentclubs", force: :cascade do |t|
     t.string "content"
+    t.integer "user_id"
     t.integer "club_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_commentclubs_on_club_id"
+    t.index ["user_id"], name: "index_commentclubs_on_user_id"
   end
 
   create_table "commentinfos", force: :cascade do |t|
     t.string "content"
+    t.integer "user_id"
     t.integer "info_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["info_id"], name: "index_commentinfos_on_info_id"
+    t.index ["user_id"], name: "index_commentinfos_on_user_id"
   end
 
   create_table "commentmatchings", force: :cascade do |t|
     t.string "content"
     t.integer "matching_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["matching_id"], name: "index_commentmatchings_on_matching_id"
+    t.index ["user_id"], name: "index_commentmatchings_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.integer "notice_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["notice_id"], name: "index_comments_on_notice_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "coreviews", force: :cascade do |t|
     t.string "content"
+    t.integer "user_id"
     t.integer "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["review_id"], name: "index_coreviews_on_review_id"
+    t.index ["user_id"], name: "index_coreviews_on_user_id"
   end
 
   create_table "infos", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_infos_on_user_id"
   end
 
   create_table "matchings", force: :cascade do |t|
@@ -92,8 +104,10 @@ ActiveRecord::Schema.define(version: 2018_08_08_130130) do
   create_table "notices", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -106,8 +120,11 @@ ActiveRecord::Schema.define(version: 2018_08_08_130130) do
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "user_id"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|

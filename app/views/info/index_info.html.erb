@@ -1,24 +1,41 @@
+  
+  
+  
   제목 : <%= @info.title %><br>
-  내용 : <%= @info.content %>
-  <a href="/info/edit_info/<%= @info.id %>">[수정]</a> 
-  <form action="/info/destroy_info/<%= @info.id %>" method="post">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <input type="submit" name="" value="삭제">
-  </form>
-  <hr />
+  내용 : <%= @info.content %><br>
+  작성자: <%=@info.user.name%><br>
   
+  <% if can? :edit_info, @info %>
+     <a href="/info/edit_info/<%= @info.id %>">[수정]</a> 
+  <%end%>
   
-  <form action="/infos/index_info/<%= @info.id%>/commentinfos/create" method='get'>
+  <% if can? :destroy_info, @info %>
+    <form action="/info/destroy_info/<%= @info.id %>" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <input type="submit" name="" value="삭제">
+    </form>
+    <hr />
+  <%end%>
+  
+    <form action="/infos/index_info/<%= @info.id%>/commentinfos/create" method='get'>
     <input type='text' name='input_comment'>
     <input type='submit' value='댓글 작성'>
-</form>
+    </form>
 
 
 <% @commentinfos.each do |comment| %>
+
     <p><%= comment.content %></p>
-    <a href='/infos/index_info/<%= @info.id %>/commentinfos/destroy/<%= comment.id %>’ data-confirm='댓글을 삭제합니다.'>
-        [댓글삭제] </a>
-    <a href="/infos/index_info/<%= @info.id %>/commentinfos/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+    <p>댓글 작성자: <%= comment.user.name %></p>
+    
+    <% if can? :destroy, comment %>
+    <a href='/infos/index_info/<%= @info.id %>/commentinfos/destroy/<%= comment.id %>’ data-confirm='댓글을 삭제합니다.'> [댓글삭제] </a>
+    <%end%>
+    
+    <% if can? :edit, comment %>
+    <a href="/infos/index_info/<%= @info.id %>/commentinfos/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a>
+    <% end %>
+    
 <% end %>
 
 

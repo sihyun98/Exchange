@@ -1,6 +1,10 @@
 class CommentmatchingsController < ApplicationController
+  load_and_authorize_resource
+  
+  
   def create
     @commentmatching = Commentmatching.new
+    @commentmatching.user_id = current_user.id
     @commentmatching.content = params[:input_comment]
     @commentmatching.matching_id = params[:matching_id]
     @commentmatching.save 

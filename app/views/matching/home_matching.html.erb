@@ -119,6 +119,7 @@ You freely make gatherings and also can apply for team members through comments.
     <th>Time</th>
     <th>User</th>
   </tr>
+  
   <tr>
     <% @matchings.each do |p|%>
     <td> <a href="/matching/index_matching/<%=p.id%>"><%=p.title%></a> </td>
@@ -128,10 +129,12 @@ You freely make gatherings and also can apply for team members through comments.
   </tr>
   <% end %>
 </table>
+
 <br><br></br>
 
-<button class="button button5"><a href="/matching/new_matching">Edit</a></button>
+<button class="button button5"><a href="/matching/new_matching">새글쓰기</a></button>
 </br></br></br></br>
+
 
 <div class="search">
 <%= search_form_for @q do |f| %>

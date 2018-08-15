@@ -1,3 +1,5 @@
 class Commentinfo < ApplicationRecord
-     belongs_to :info
+    resourcify
+    belongs_to :user
+    belongs_to :info
 end

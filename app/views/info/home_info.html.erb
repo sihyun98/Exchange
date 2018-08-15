@@ -113,18 +113,20 @@ Share necessary information!</h3>
     <th>Title</th>
     <th>content</th>
     <th>Time</th>
+    <th>User</th>
   </tr>
   <tr>
    <% @infos.each do |p|%>
     <td><a href="/info/index_info/<%= p.id %>"><%= p.title %></a> </td>
     <td><%= p.content %></td>
     <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
+    <td><%=p.user.name %></td>
   </tr>
   <% end %>
 </table>
 <br><br></br>
 
-<button class="button button5"><a href="/info/new_info">Edit</a></button>
+<button class="button button5"><a href="/info/new_info">새 글쓰기</a></button>
 </br></br></br></br>
 
 <div class="search">

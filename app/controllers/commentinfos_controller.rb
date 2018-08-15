@@ -1,7 +1,10 @@
 class CommentinfosController < ApplicationController
+   load_and_authorize_resource
+   
   def create
     
-    @commentinfo = Commentinfo.new                        
+    @commentinfo = Commentinfo.new
+    @commentinfo.user_id = current_user.id
     @commentinfo.content = params[:input_comment]                    
     @commentinfo.info_id = params[:info_id]
     @commentinfo.save

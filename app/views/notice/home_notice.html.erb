@@ -117,6 +117,7 @@ If you have extra information in need, please post it in  <a href = "/faq"> FAQ 
     <th>Title</th>
     <th>content</th>
     <th>Time</th>
+    <th>content</th>
   </tr>
  
   <tr>
@@ -124,6 +125,7 @@ If you have extra information in need, please post it in  <a href = "/faq"> FAQ 
     <td><a href="/notice/index_notice/<%=p.id%>"> <%= p.title %></a> </td>
     <td><%= p.content %></td>
     <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
+    <td><%=p.user.name %></td>
   </tr>
   <% end %>
 </table>

@@ -1,46 +1,64 @@
 class ClubController < ApplicationController
+  load_and_authorize_resource
+  before_action :set_club, only: [:index_club, :edit_club, :update_club, :destroy_club]
+  before_action :authenticate_user!, except: [:home_club]
+ 
+  
   def home_club
     @q = Club.ransack(params[:q])
     @clubs = @q.result(distict: true)
+    @clubs= Club.all
   end
 
   def index_club
-     @club = Club.find(params[:club_id])
-     
-    # binding.pry
-     @commentclubs  = @club.commentclubs
+    @commentclubs = @club.commentclubs
   end
 
+
   def new_club
+     @club = Club.new
   end
 
   def create_club
-    @club = Club.new
-    @club.title = params[:club_title]
-    @club.content = params[:club_content]
-    @club.save
-
-    redirect_to '/club/home_club'
+     
+    @club = Club.new(club_params)
+    @club.user_id= current_user.id
+   
+    if @club.save
+    else
+    end
+     
+     redirect_to '/club/home_club'
   end
 
   def edit_club
-    @club = Club.find(params[:club_id])
+
   end
 
   def update_club
-    @club = Club.find(params[:club_id])
-    @club.title = params[:club_title]
-    @club.content = params[:club_content]
-    @club.save
-
-   redirect_to :controller => 'club', :action => 'index_club'
+    @club.update(club_params)
+    if @club.save
+    else
+    end
+    
+     redirect_to :controller => 'club', :action => 'index_club'
   end
 
   def destroy_club
-    @club = Club.find(params[:club_id])
     @club.destroy
 
     redirect_to '/club/home_club'
+  end
+  
+  
+  private
+  
+  def club_params
+    params.require(:club).permit(:title, :content, :user_id)
+  end
+  
+  def set_club
+      @club = Club.find(params[:club_id])
   end
   
   

@@ -3,10 +3,6 @@ class Ability
 
   def initialize(user)
     
-    
-    
-    
-    
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
@@ -18,6 +14,35 @@ class Ability
          
          can [:index_matching, :home_matching, :new_matching, :create_matching], Matching
          can [:edit_matching, :update_matching, :destroy_matching], Matching, user_id: user.id
+         
+         can [:index_notice, :home_notice, :new_notice, :create_notice], Notice
+         can [:edit_notice, :update_notice, :destroy_notice], Notice, user_id: user.id
+         
+         can [:index_info, :home_info, :new_info, :create_info], Info
+         can [:edit_info, :update_info, :destroy_info], Info, user_id: user.id
+         
+         can [:index_club, :home_club, :new_club, :create_club], Club
+         can [:edit_club, :update_club, :destroy_club], Club, user_id: user.id
+         
+         can [:index_question, :home_question, :new_question, :create_question], Question
+         can [:edit_question, :update_question, :destroy_question], Question, user_id: user.id
+         
+     #comment 권한
+         can [:create], Comment
+         can [:edit, :update, :destroy], Comment, user_id: user.id
+         
+         can [:create], Coreview
+         can [:edit, :update, :destroy], Coreview, user_id: user.id
+         
+         can [:create], Commentinfo
+         can [:edit, :update, :destroy], Commentinfo, user_id: user.id
+         
+         can [:create], Commentmatching
+         can [:edit, :update, :destroy], Commentmatching, user_id: user.id
+         
+         can [:create], Commentclub
+         can [:edit, :update, :destroy], Commentclub, user_id: user.id
+         
          
     end
     #

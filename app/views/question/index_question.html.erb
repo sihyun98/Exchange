@@ -1,10 +1,14 @@
   제목 : <%= @question.title %><br>
   내용 : <%= @question.content %>
   작성된 시간 : <%= @question.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %>
+  <% if can? :edit_question, @question %>
    <a href="/question/edit_question/<%= @question.id %>">[수정]</a> 
+   <%end%>
+   <% if can? :destroy_question, @question %>
    <form action="/question/destroy_question/<%= @question.id %>" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <input type="submit" name="" value="삭제">
   </form>
   <hr />
   <hr />
+  <%end%>
