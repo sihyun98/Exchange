@@ -15,6 +15,10 @@ class Ability
     else
          can [:index_review, :home_review, :new_review, :create_review], Review
          can [:edit_review, :update_review, :destroy_review], Review, user_id: user.id
+         
+         can [:index_matching, :home_matching, :new_matching, :create_matching], Matching
+         can [:edit_matching, :update_matching, :destroy_matching], Matching, user_id: user.id
+         
     end
     #
     # The first argument to `can` is the action you are giving the user

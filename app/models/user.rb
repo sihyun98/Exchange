@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :reviews
+  has_many :matchings
+  
   def assign_default_role
     self.add_role(:newuser) if self.roles.blank?
   end

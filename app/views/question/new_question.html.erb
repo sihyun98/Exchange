@@ -1,5 +1,6 @@
+<h1>새 글 쓰기</h1>
 <form action="/question/create_question" method="post">
- <%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
+   <%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
   제목 : <input type="text" name="question_title" value=""><br />
   내용 : <textarea name="question_content" rows="8" cols="80"></textarea><br />
  <input type="submit" value="제출">

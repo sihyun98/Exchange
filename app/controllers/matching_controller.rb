@@ -1,4 +1,6 @@
 class MatchingController < ApplicationController
+  load_and_authorize_resource
+  
   def home_matching
     @q = Matching.ransack(params[:q])
     @matchings = @q.result(distict: true)
@@ -14,9 +16,12 @@ class MatchingController < ApplicationController
 
   def create_matching
     @matching = Matching.new
+    @matching.user_id = current_user.id
     @matching.title = params[:matching_title]
     @matching.content = params[:matching_content]
-    @matching.save
+    if @matching.save
+    else
+    end
 
     redirect_to '/matching/home_matching'
   end

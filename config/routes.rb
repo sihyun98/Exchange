@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   
   
   get 'review/home_review', as: 'reviews'
+  post 'review/home_review'
   get 'review/new_review'
   post 'review/create_review'
   get 'review/index_review/:review_id' => 'review#index_review'
@@ -86,5 +87,7 @@ Rails.application.routes.draw do
   
   root 'main#index_main'
   get 'main/index_main'
+  
+  get 'friendlist/friendlistindex'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

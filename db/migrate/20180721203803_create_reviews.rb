@@ -3,9 +3,13 @@ class CreateReviews < ActiveRecord::Migration[5.2]
     create_table :reviews do |t|
       t.string :title
       t.text :content
+      t.integer :user_id
       t.belongs_to :user
+      
 
       t.timestamps
+      
+      
     end
   end
 end
