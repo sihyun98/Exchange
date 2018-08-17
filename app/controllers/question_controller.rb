@@ -12,7 +12,7 @@ class QuestionController < ApplicationController
   end
 
   def index_question
-    
+    @commentquestions = @question.commentquestions
   end
 
 

@@ -43,6 +43,10 @@ class Ability
          can [:create], Commentclub
          can [:edit, :update, :destroy], Commentclub, user_id: user.id
          
+         can [:create], Commentquestion
+         can [:edit, :update, :destroy], Commentquestion, user_id: user.id
+         
+         
          
     end
     #

@@ -25,15 +25,13 @@
   
 <% @commentclubs.each do |comment| %>
     <p><%= comment.content %></p>
-    <p><%= comment.user.name %> </p>
+   
      
-    <% if can? :destroy, comment %>
+   
     <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/destroy/<%= comment.id %>" data-confirm='댓글을 삭제합니다.'> [댓글삭제] </a>
-    <% end %>
-    
-    <% if can? :edit, comment %>
+   
     <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
-    <%end%>
+    
     
    
 <% end %>

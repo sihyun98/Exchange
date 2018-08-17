@@ -2,10 +2,7 @@ Rails.application.routes.draw do
   
   
  
-  get 'clubs/index_club/:club_id/cocoment_clubs/:club_id/cocomentclubs/create' => 'cocomentclubs#create'
-  get 'cocomentclubs/destroy' => 'cocomentclubs#destroy'
-  get 'cocomentclubs/edit'
-  get 'cocomentclubs/update'
+  
   devise_for :users
   get 'club/home_club', as: 'clubs'
   get 'club/new_club'
@@ -84,6 +81,10 @@ Rails.application.routes.draw do
   post 'question/update_question/:question_id' => 'question#update_question'
   post 'question/destroy_question/:question_id' => 'question#destroy_question'
   get 'question/index_question/:question_id' => 'question#index_question'
+  get 'questions/index_question/:question_id/commentquestions/create' => 'commentquestions#create'
+  get 'questions/index_question/:question_id/commentquestions/destroy/:commentquestions_id' => 'commentquestions#destroy'
+  get 'questions/index_question/:question_id/commentquestions/edit/:commentquestions_id' =>'commentquestions#edit'
+  post 'questions/index_question/:question_id/commentquestions/update/:commentquestions_id' =>'commentquestions#update'
   
   root 'main#index_main'
   get 'main/index_main'

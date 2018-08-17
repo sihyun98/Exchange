@@ -1,14 +1,39 @@
-  제목 : <%= @question.title %><br>
-  내용 : <%= @question.content %>
-  작성된 시간 : <%= @question.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %>
-  <% if can? :edit_question, @question %>
+  <br />
+  
+  Title : <%= @question.title %><br>
+  Content : <%= @question.content %><br>
+  작성된 시간 : <%= @question.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %><br>
+  작성자 : <%= @question.user.name %><br>
+  
+   <% if can? :edit_question, @question %>
    <a href="/question/edit_question/<%= @question.id %>">[수정]</a> 
    <%end%>
+   
    <% if can? :destroy_question, @question %>
-   <form action="/question/destroy_question/<%= @question.id %>" method="post">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <input type="submit" name="" value="삭제">
-  </form>
-  <hr />
-  <hr />
+    <form action="/question/destroy_question/<%= @question.id %>" method="post">
+     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+     <input type="submit" name="" value="삭제">
+    </form>
+    <hr />
+   <%end%>
+  
+   <form action="/questions/index_question/<%= @question.id %>/commentquestions/create" method='get'>
+    <input type='text' name='input_comment'>
+    <input type='submit' value='댓글 작성'>
+   </form>
+  
+  
+  <% @commentquestions.each do |comment| %>
+
+    <p><%= comment.content %> </p>
+    <p>작성자 : <%= comment.user.name %> </p>
+    
+    <% if can? :destroy, comment %>
+    <a href="/questions/index_question/<%=@question.id%>/commentquestions/destroy/<%= comment.id %>" data-confirm='댓글을 삭제합니다.'> [댓글 삭제] </a>
+    <%end%>
+    
+    <% if can? :edit, comment %>
+    <a href="/questions/index_question/<%= @question.id %>/commentquestions/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+    <%end%>
+    
   <%end%>

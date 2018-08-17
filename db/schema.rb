@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_08_130130) do
+ActiveRecord::Schema.define(version: 2018_08_17_151118) do
 
   create_table "clubs", force: :cascade do |t|
     t.string "title"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 2018_08_08_130130) do
     t.datetime "updated_at", null: false
     t.index ["matching_id"], name: "index_commentmatchings_on_matching_id"
     t.index ["user_id"], name: "index_commentmatchings_on_user_id"
+  end
+
+  create_table "commentquestions", force: :cascade do |t|
+    t.string "content"
+    t.integer "question_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_commentquestions_on_question_id"
+    t.index ["user_id"], name: "index_commentquestions_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|

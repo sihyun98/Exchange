@@ -12,11 +12,14 @@ class User < ApplicationRecord
   has_many :clubs
   has_many :questions
   
+  #comment 
   has_many :comments
   has_many :coreviews
   has_many :commentinfos
   has_many :commentmatchings
+  has_many :commentquestions
   has_many :commentclubs
+  
   
   def assign_default_role
     self.add_role(:newuser) if self.roles.blank?

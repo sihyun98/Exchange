@@ -5,7 +5,7 @@ class CommentClubsController < ApplicationController
   def create
     
     @commentclub = Commentclub.new
-    @commentclub.user_id = current_user.id
+    @commentclub.user_id = current.user_id
     @commentclub.content = params[:input_comment]                   
     @commentclub.club_id = params[:club_id]
     @commentclub.save

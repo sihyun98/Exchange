@@ -1,8 +1,8 @@
 <h1>수정 화면</h1>
 <form action="/review/update_review/<%= @review.id %>/" method="post">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  제목 : <input type="text" name="review_title" value="<%= @review.title %>"><br />
-  내용 : <textarea name="review_content" rows="8" cols="80"><%= @review.content%></textarea><br />
+  제목 : <input type="text" name="review[title]" value="<%= @review.title %>"><br />
+  내용 : <textarea name="review[content]" rows="8" cols="80"><%= @review.content%></textarea><br />
   <input type="submit" value="제출">
 </form>
 
