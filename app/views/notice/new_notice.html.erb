@@ -1,7 +1,20 @@
 <h1>새 글 쓰기</h1>
-<form action="/notice/create_notice" method="post">
- <%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
-  제목 : <input type="text" name="notice[title]" value=""><br />
-  내용 : <textarea name="notice[content]" rows="8" cols="80"></textarea><br />
- <input type="submit" value="제출">
-</form>
+
+<%= form_for(@notice, url: notice_create_notice_path) do |f| %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -4,6 +4,7 @@
   Content : <%= @question.content %><br>
   작성된 시간 : <%= @question.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %><br>
   작성자 : <%= @question.user.name %><br>
+   <%= image_tag("#{@question.image}") %>
   
    <% if can? :edit_question, @question %>
    <a href="/question/edit_question/<%= @question.id %>">[수정]</a> 

@@ -54,10 +54,15 @@ class MatchingController < ApplicationController
   private
   
   def matching_params
-    params.require(:matching).permit(:title, :content, :user_id)
+    params.require(:matching).permit(:title, :content, :user_id, :image)
   end
   
   def set_matching
       @matching = Matching.find(params[:matching_id])
   end
+  
+  def form_for
+    @matching=Matching.new
+  end
+  
 end

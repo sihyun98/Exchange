@@ -4,7 +4,9 @@
   제목 : <%= @info.title %><br>
   내용 : <%= @info.content %><br>
   작성자: <%=@info.user.name%><br>
-  
+  <%= image_tag("#{@info.image}") %><br>
+   
+   
   <% if can? :edit_info, @info %>
      <a href="/info/edit_info/<%= @info.id %>">[수정]</a> 
   <%end%>

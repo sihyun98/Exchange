@@ -54,10 +54,14 @@ class NoticeController < ApplicationController
   private
   
   def notice_params
-    params.require(:notice).permit(:title, :content, :user_id)
+    params.require(:notice).permit(:title, :content, :user_id, :image)
   end
   
   def set_notice
       @notice = Notice.find(params[:notice_id])
+  end
+  
+  def form_for
+    @notice=Notice.new
   end
 end

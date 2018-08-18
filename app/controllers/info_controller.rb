@@ -54,10 +54,14 @@ class InfoController < ApplicationController
   private
   
   def info_params
-    params.require(:info).permit(:title, :content, :user_id)
+    params.require(:info).permit(:title, :content, :user_id, :image)
   end
   
   def set_info
-      @info = Info.find(params[:info_id])
+    @info = Info.find(params[:info_id])
+  end
+  
+  def form_for
+    @info =Info.new
   end
 end

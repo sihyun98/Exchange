@@ -54,12 +54,15 @@ class ClubController < ApplicationController
   private
   
   def club_params
-    params.require(:club).permit(:title, :content, :user_id)
+    params.require(:club).permit(:title, :content, :user_id, :image)
   end
   
   def set_club
       @club = Club.find(params[:club_id])
   end
   
+  def form_for
+    @club=Club.new
+  end
   
 end

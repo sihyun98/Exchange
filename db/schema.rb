@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_17_151118) do
+ActiveRecord::Schema.define(version: 2018_08_18_050908) do
 
   create_table "clubs", force: :cascade do |t|
     t.string "title"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_151118) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["user_id"], name: "index_clubs_on_user_id"
   end
 
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_151118) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["user_id"], name: "index_infos_on_user_id"
   end
 
@@ -108,6 +110,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_151118) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["user_id"], name: "index_matchings_on_user_id"
   end
 
@@ -117,6 +120,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_151118) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
@@ -134,6 +138,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_151118) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -143,6 +148,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_151118) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 

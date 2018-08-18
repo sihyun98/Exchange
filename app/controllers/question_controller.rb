@@ -55,10 +55,15 @@ class QuestionController < ApplicationController
   private
   
   def question_params
-    params.require(:question).permit(:title, :content, :user_id)
+    params.require(:question).permit(:title, :content, :user_id, :image)
   end
   
   def set_question
     @question = Question.find(params[:question_id])
   end
+  
+  def form_for
+    @question=Question.new
+  end
+  
 end

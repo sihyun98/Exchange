@@ -54,13 +54,15 @@ class ReviewController < ApplicationController
   private
   
   def review_params
-    params.require(:review).permit(:title, :content, :user_id)
+    params.require(:review).permit(:title, :content, :user_id, :image)
   end
   
   def set_review
       @review = Review.find(params[:review_id])
   end
 
-  
+  def form_for
+    @review=Review.new
+  end
   
 end
