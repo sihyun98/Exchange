@@ -1,20 +1,31 @@
-<h1>새 글 쓰기</h1>
 
+<br/>
+<div class= "box">
+
+<h3>New Post</h3>
+<br/>
 <%= form_for(@info, url: info_create_info_path) do |f| %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
+  <br/>
   <div class="field">
-    <%= f.label :content %><br>
+    <%= f.label :content %>
     <%= f.text_area :content %>
   </div>
+  <br/>
   <div class="field">
-    <%= f.label :image %><br>
+    <%= f.label :image %>
     <%= f.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
   </div>
+  <br/>
+  <span class="image right">
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+ </span>
+<br/><br/>
+</div>

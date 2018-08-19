@@ -1,127 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<section>
+<div class="table-wrapper">
 
-  
-<head>
-<style>
-
-h1, h3 { text-align: center;}
-
-
-body {font-family: "Lato", sans-serif}
-.mySlides {display: none}
-.w3-button {width:150px;}
-
-.button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 6px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-.button5 {
-    background-color: white;
-    color: black;
-    border: 2px solid #555555;
-    float: right;
-    margin-right: 350px;
-    border-radius: 2px;
-
-}
-
-.button5:hover {
-    background-color: #555555;
-    color: white;
-}
-
-
-</style>
-</head>
-
-<body>
-
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    
-    <a href='/' class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Home </a>
-    
-    <% if user_signed_in? %>
-    <a><%=current_user.email%> 님 환영합니다!</a>
-    <% else %>
-    <% end %></li></a>
-   
-    <% if user_signed_in? %>
-    <a href='/page/home_page' class="w3-bar-item w3-button w3-padding-large w3-hide-small">내 페이지 </a> 
-    <% else %>
-    <a href='/users/sign_in' class="w3-bar-item w3-button w3-padding-large w3-hide-small">로그인</a>
-    <% end %>
-    
-    <% if user_signed_in? %>
-    <a href='/users/sign_out' data-method='delete' class="w3-bar-item w3-button w3-padding-large w3-hide-small">로그아웃</a>
-    <% else %>
-    <a href='/users/sign_up' class="w3-bar-item w3-button w3-padding-large w3-hide-small">회원가입</a>
-    <% end %>
-    
-    <a href='/notice/home_notice' class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Notice | 공지사항 </a>
-    
-  </div>
-</div>
-</br></br></br></br>
-
-
-  <h1> 제목 : <%= @review.title %> </h1><br>
-  <h3>내용 : <%= @review.content %></h3>
-  작성자: <%=@review.user.name%>
-  <a>작성된 시간 : <%= @review.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></a></br>
+  <table>
+		<thead>
+			<tr>
+					<th>Title: <%= @review.title %></th>
+                     <th>Time : <%= @review.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %> </th>
+                     <th>User: <%=@review.user.name %> </th>
+            </tr>
+  </table>
+                  
+   <%= @review.content %><br/>
    <%= image_tag("#{@review.image}") %>
-  
-  <% if can? :edit_review, @review %>
-    <a href="/review/edit_review/<%= @review.id %>">[수정]</a> 
-  <% end %>
-  
-  <% if can? :destroy_review, @review %>
-    <form action="/review/destroy_review/<%= @review.id %>" method="post">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <input type="submit" name="" value="삭제">
-  </form>
-  <hr />
-  <% end%>
-  
-  <br><br><br>
-  
-   
-  <form action="/reviews/index_review/<%= @review.id %>/coreviews/create" method='get'>
-    <input type='text' name='input_comment'>
-    <input type='submit' value='댓글 작성'>
-  </form>
+</div>  
 
+
+<br /><br /><br />
+<div> 
+ <% if can? :edit_review, @review %>
+    <span class="image left"><button><a href="/review/edit_review/<%= @review.id %>">Edit Post</a></button></span>
+ <% end %>
+  
+ <% if can? :destroy_review, @review %>
+    <form action="/review/destroy_review/<%= @review.id %>" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <span class="image left">
+      <input type="submit" name="" value="Delete Post">
+    </form>
+      </span>
+  </br></br>
+ <%end%>
+</div>  
+  
+ <br />
+ <span class= "image right"><a href='/review/home_review' class = "button primary small"> Back to the list </a></span>  
+ <br/><br/>
+  <hr>
+	<h2>Comments</h2>							
 
 <% @coreviews.each do |comment| %>
-    <p><%= comment.content %></p>
-    <p>댓글 작성자 : <%=comment.user.name%></p>
-    
-    <% if can? :destroy, comment %>
-    <a href='/reviews/index_review/<%= @review.id %>/coreviews/destroy/<%= comment.id %>’ data-confirm='댓글을 삭제합니다.'>[댓글삭제]</a>
-    <% end %>
-    
-    <% if can? :edit, comment %>
-    <a href="/reviews/index_review/<%= @review.id %>/coreviews/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
-    <% end %>
-<% end %>
+<div class= "commentbox"> 
+  <p><b><%= comment.user.name %></b></p> 
+  
+  <p><%= comment.content %></p>
+  <span class= "image right">
+  <ul>
+  <% if can? :destroy, comment %>
+  <a href='/reviews/index_review/<%= @review.id %>/coreviews/destroy/<%= comment.id %>’ data-confirm='댓글을 삭제합니다.'> Delete </a>
+  <%end%>
+  
+  <% if can? :edit, comment %>
+  <a href="/reviews/index_review/<%= @review.id %>/coreviews/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> Edit </a> 
+  <%end%>
+  </ul>
+  </span>
+  <br/>
+  </div>
+  
+  
+<% end %>  
+ 
+<br/>
+<form action="/reviews/index_review/<%= @review.id %>/coreviews/create" method='get'>
+    <ul class="actions">
+  <input type='text' name='input_comment'><input type='submit' value='Submit'>
+   </ul>
+  </form>
+  
+</section>
 
-</body>
+
+
+ 
+  </br></br>
+

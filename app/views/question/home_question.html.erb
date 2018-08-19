@@ -1,76 +1,34 @@
 <!DOCTYPE html>
 <html>
-
-<body>
-
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    
-    <a href='/' class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Home </a>
-    
-    <% if user_signed_in? %>
-    <a><%=current_user.email%> 님 환영합니다!</a>
-    <% else %>
-    <% end %></li></a>
-   
-    <% if user_signed_in? %>
-    <a href='/page/home_page' class="w3-bar-item w3-button w3-padding-large w3-hide-small">내 페이지 </a> 
-    <% else %>
-    <a href='/users/sign_in' class="w3-bar-item w3-button w3-padding-large w3-hide-small">로그인</a>
-    <% end %>
-    
-    <% if user_signed_in? %>
-    <a href='/users/sign_out' data-method='delete' class="w3-bar-item w3-button w3-padding-large w3-hide-small">로그아웃</a>
-    <% else %>
-    <a href='/users/sign_up' class="w3-bar-item w3-button w3-padding-large w3-hide-small">회원가입</a>
-    <% end %>
-    
-    <a href='/notice/home_notice' class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Notice | 공지사항 </a>
-    
-    
-  </div>
-</div>
-<br><br><br><br><br>
-
-<h1>질문 게시판 입니다</h1> </br>
-
-<h3>교환학생 프로그램 경험이 있는 학생들이다람쥐</h3>
-</br></br></br></br>
+<br/>
+<h1>FAQ </h1>
+<blockquote>
+외국으로 교환학생을 가려는 한국학생들이 자유롭게 질문을 올리는 게시판입니다. <br/><br/>
+This is a bulletin board where Korean students can ask questions. </blockquote>
 
 <table>
+ <table>
   <tr>
-    <th>Title</th>
-    <th>content</th>
-    <th>Time</th>
     <th>User</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Time</th>
   </tr>
   
-  <tr>
+<tr>
     <% @questions.each do |p|%>
-      <td><a href="/question/index_question/<%=p.id%>"><%=p.title%></a> </td>
-      <td><%= p.content %></td>
-      <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
-      <td><%=p.user.name %></td>
+    <td><%=p.user.name%></td>
+    <td><a href="/question/index_question/<%=p.id%>"><%=p.title%></a> </td>
+    <td><%= p.content %></td>
+    <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
   </tr>
   <% end %>
 </table>
-<br><br></br>
-
-<button class="button button5"><a href="/question/new_question">Edit</a></button>
-</br></br></br></br>
-
-<div class="search">
-<%= search_form_for @q do |f| %>
-  <%= f.label :Search %>
-  <%= f.search_field :title_cont %>
-  
-  <%= f.submit %>
-<% end %>
-</div>
+<br>
 
 
 
-</body>
+<span class="image right"><a href="/question/new_question" class="button primary">Write New Post</a></span>
+<br /><br /><br />
+
 </html>

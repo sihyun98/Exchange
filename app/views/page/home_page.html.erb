@@ -1,31 +1,185 @@
-<h1>My page</h1></br>
+<br/>
+<div class="box">
+<h3>My page</h3></br>
 
 <% if user_signed_in? %>
-    <p>Email : <%= current_user.email %></p>
+    <p><b>Email : <%= current_user.email %></b></p>
     
     <% if current_user.name.present? %>
-        <p>Name : <%= current_user.name %></p>
+        <p><b>Name : <%= current_user.name %></b></p>
     <% else %>
-        <p>Name : (Please update your information!)</p>
+        <p><b>Name : (Please update your information!)</b></p>
     <% end %>
     
     <% if current_user.nationality.present? %>
-        <p>Nationality : <%= current_user.nationality %></p>
+        <p><b>Nationality : <%= current_user.nationality %></b></p>
     <% else %>
-        <p>Nationality : (Please update your information!)</p>
+        <p><b>Nationality : (Please update your information!)</b></p>
     <% end %>
     
     <% if current_user.gender.present? %>
-        <p>Gender : <%= current_user.gender %></p>
+        <p><b>Gender : <%= current_user.gender %></b></p>
     <% else %>
-        <p>Gender : (Please update your information!)</p>
+        <p><b>Gender : (Please update your information!)</b></p>
     <% end %>
     
     <% if current_user.age.present? %>
-        <p>Age : <%= current_user.age %></p>
+        <p><b>Age : <%= current_user.age %></b></p>
     <% else %>
-        <p>Age : (Please update your information!)</p>
+        <p><b>Age : (Please update your information!)</b></p>
     <% end %>
-<% end %></br></br>
 
-<a href="/users/edit" class="btn btn-default">프로필수정</a></br>
+</div>
+<br/>
+
+<div class="box">
+    <% @count=0 %>
+    <h3>Review</h3>
+    <% @reviews.each do |p|%>
+        <% if current_user.name==p.user.name %>
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>content</th>
+                <th>Time</th>
+                <th>User</th>
+              </tr>
+              <tr>
+                <td><a href='/review/index_review/<%= p.id%>'> <%= p.title%> </a> </td>
+                <td><%= p.content %></td>
+                <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
+                <td><%=p.user.name%></td>
+              </tr>
+            </table>
+            <% @count=1 %>
+        <% end %>
+    <% end %>
+    <% if @count==0 %>
+        </p> No Information. </p>
+    <% end %></br>
+</div>
+
+<br/>
+
+<div class="box">
+
+    <% @count=0 %>
+    <h3>Question</h3>
+    <% @questions.each do |p|%>
+        <% if current_user.name==p.user.name %>
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>content</th>
+                <th>Time</th>
+                <th>User</th>
+              </tr>
+              <tr>
+                <td><a href='/question/index_question/<%= p.id%>'> <%= p.title%> </a> </td>
+                <td><%= p.content %></td>
+                <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
+                <td><%=p.user.name%></td>
+              </tr>
+            </table>
+            <% @count=1 %>
+        <% end %>
+    <% end %>
+    <% if @count==0 %>
+        </p> No Information. </p>
+    <% end %></br>
+</div>
+
+<br/>
+
+<div class="box">
+    <% @count=0 %>
+    <h3>Sharing Info</h3>
+    <% @infos.each do |p|%>
+        <% if current_user.name==p.user.name %>
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>content</th>
+                <th>Time</th>
+                <th>User</th>
+              </tr>
+              <tr>
+                <td><a href='/info/index_info/<%= p.id%>'> <%= p.title%> </a> </td>
+                <td><%= p.content %></td>
+                <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
+                <td><%=p.user.name%></td>
+              </tr>
+            </table>
+            <% @count=1 %>
+        <% end %>
+    <% end %>
+    <% if @count==0 %>
+        </p> No Information. </p>
+    <% end %></br>
+</div>
+
+<br/>
+
+<div class="box">
+    <% @count=0 %>
+    <h3>Matching Groups</h3>
+    <% @matchings.each do |p|%>
+        <% if current_user.name==p.user.name %>
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>content</th>
+                <th>Time</th>
+                <th>User</th>
+              </tr>
+              <tr>
+                <td><a href='/matching/index_matching/<%= p.id%>'> <%= p.title%> </a> </td>
+                <td><%= p.content %></td>
+                <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
+                <td><%=p.user.name%></td>
+              </tr>
+            </table>
+            <% @count=1 %>
+        <% end %>
+    <% end %>
+    <% if @count==0 %>
+        </p> No Information. </p>
+    <% end %></br>
+</div>
+
+<br/>
+
+<div class="box">
+    <% @count=0 %>
+    <h3>Clubs</h3>
+    <% @clubs.each do |p|%>
+        <% if current_user.name==p.user.name %>
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>content</th>
+                <th>Time</th>
+                <th>User</th>
+              </tr>
+              <tr>
+                <td><a href='/club/index_club/<%= p.id%>'> <%= p.title%> </a> </td>
+                <td><%= p.content %></td>
+                <td><%= p.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %></td>
+                <td><%=p.user.name%></td>
+              </tr>
+            </table>
+            <% @count=1 %>
+        <% end %>
+    <% end %>
+    <% if @count==0 %>
+        </p> No Information. </p>
+    <% end %></br>
+    
+<% end %></br></br>
+</div>
+
+<br/>
+<span class="image right">
+<ul><a href="/users/edit" class="button primary">Edit Info</a>
+
+</span>

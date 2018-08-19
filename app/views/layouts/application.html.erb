@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ExchangeProject</title>
+    <title>Exchange Students Community</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,7 +11,54 @@
   
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+	<head>
+		<title>Exchange Students Community</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="/" class="logo"><strong>Exchange Newbie</strong> <br /> Exchange Students Community</a></a>
+									<ul class="icons">
+										
+									  <% if user_signed_in? %>
+                    <a><%=current_user.name%> 님 환영합니다!</a>
+                    <% else %>
+                    <% end %></a>
+   
+                    <% if user_signed_in? %>
+                    <li><a href='/page/home_page'><span class="label"> My page </span></a></li>
+                    <% else %>
+										<li><a href='/users/sign_in' ><span class="label"> Login </span></a></li>
+										<% end %>
+										<% if user_signed_in? %>
+										<li><a href='/users/sign_out' data-method='delete' ><span class="label"> Log out </span></a></li>
+										<% else %> 
+                    <li><a href='/users/sign_up' ><span class="label"> Sign up </span></a></li>
+                    <% end %>
+										
+										
+
+										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+									
+									</ul>
+								</header>
+
+							<%= yield %>
+								
+
+						</div>
+					</div>
+
+			
+            

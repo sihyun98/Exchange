@@ -1,148 +1,68 @@
-  
+<section>
+<div class="table-wrapper">
 
-<!DOCTYPE html>
-<html>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  
-<head>
-<style>
-
-h1 { text-align: center;}
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    padding: 8px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-tr:hover {background-color:#f5f5f5;}
-
-body {font-family: "Lato", sans-serif}
-.mySlides {display: none}
-.w3-button {width:150px;}
-
-.button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-.button5 {
-    background-color: white;
-    color: black;
-    border: 2px solid #555555;
-    float: right;
-    margin-right: 350px;
-    border-radius: 2px;
-
-}
-
-.button5:hover {
-    background-color: #555555;
-    color: white;
-}
-
-.search-container {
-     float: right;
-     margin-right: 825px;
-
-}
-
-</style>
-</head>
-
-
-<body>
-
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    
-    <a href='/' class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Home </a>
-    
-    <% if user_signed_in? %>
-    <a><%=current_user.email%> 님 환영합니다!</a>
-    <% else %>
-    <% end %></li></a>
-   
-    <% if user_signed_in? %>
-    <a href='/page/home_page' class="w3-bar-item w3-button w3-padding-large w3-hide-small">내 페이지 </a> 
-    <% else %>
-    <a href='/users/sign_in' class="w3-bar-item w3-button w3-padding-large w3-hide-small">로그인</a>
-    <% end %>
-    
-    <% if user_signed_in? %>
-    <a href='/users/sign_out' data-method='delete' class="w3-bar-item w3-button w3-padding-large w3-hide-small">로그아웃</a>
-    <% else %>
-    <a href='/users/sign_up' class="w3-bar-item w3-button w3-padding-large w3-hide-small">회원가입</a>
-    <% end %>
-    
-    <a href='/notice/home_notice' class="w3-bar-item w3-button w3-padding-large w3-hide-small"> Notice | 공지사항 </a>
-    
-    
-  </div>
+  <table>
+								<thead>
+								  <tr>
+								      <th>Title: <%= @notice.title %></th>
+                      <th>Time : <%= @notice.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %> </th>
+                      <th>User: <%=@notice.user.name %> </th>
+                  </tr>
+                  </table>
+                  
+   <%= @notice.content %>
+   <%= image_tag("#{@notice.image}") %>
 </div>
-<br><br><br><br><br>
 
-<table>
-  <tr>
-     Time: <%= @notice.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %>
-     User:<%=@notice.user.name %>
-     Title: <%= @notice.title %>
-     내용 : <%= @notice.content %>
-      <%= image_tag("#{@notice.image}") %>
-  </tr>
-  
-  </br></br>
-
+<br /><br /><br />
+<div>
   <% if can? :edit_notice, @notice %>
-  <a href="/notice/edit_notice/<%= @notice.id %>">[수정]</a> 
+  <span class="image left"><button><a href="/notice/edit_notice/<%= @notice.id %>">Edit Post</a></button></span>
   <% end %>
   
   <% if can? :destroy_notice, @notice %>
     <form action="/notice/destroy_notice/<%= @notice.id %>" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <input type="submit" name="" value="삭제">
+   <span class="image left">
+   <input type="submit" name="" value="Delete Post">
     </form>
+    </span>
   </br></br>
   <%end%>
+  </div>
   
-  <form action="/notices/index_notice/<%= @notice.id %>/comments/create" method='get'>
-    <input type='text' name='input_comment'>
-    <input type='submit' value='댓글 작성'>
-  </form>
-  </br></br>
-  
-  
+  <br />
+  <span class= "image right"><a href='/notice/home_notice' class = "button primary small"> Back to the list </a></span>  
+  <br/><br/>
+  <hr>
+	<h2>Comments</h2>							
+
 <% @comments.each do |p| %>
-  <p><%= p.content %></p>
-  <p>댓글 작성자: <%= p.user.name %></p>
+<div class= "commentbox"> 
+  <p><b><%= p.user.name %></b></p> 
   
+  <p><%= p.content %></p>
+  <span class= "image right">
+  <ul>
   <% if can? :destroy, p %>
-  <a href="/notices/index_notice/<%= @notice.id %>/comments/destroy/<%= p.id %>" data-confirm='댓글을 삭제합니다.'>[댓글삭제] </a>
+  <a href="/notices/index_notice/<%= @notice.id %>/comments/destroy/<%= p.id %>" data-confirm='댓글을 삭제합니다.'>Delete </a>
   <%end%>
   
   <% if can? :edit, p %>
-  <a href="/notices/index_notice/<%= @notice.id %>/comments/edit/<%= p.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+  <a href="/notices/index_notice/<%= @notice.id %>/comments/edit/<%= p.id %>" data-confirm='댓글을 수정합니다.'> Edit </a> 
   <%end%>
+  </ul>
+  </span>
+  <br/>
+  </div>
+  
   
 <% end %>
+
+<br/>
+<form action="/notices/index_notice/<%= @notice.id %>/comments/create" method='get'>
+    <ul class="actions">
+  <input type='text' name='input_comment'><input type='submit' value='Write Comment'>
+   </ul>
+  </form>
+</section>
