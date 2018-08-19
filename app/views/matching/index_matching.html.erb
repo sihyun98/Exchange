@@ -1,45 +1,72 @@
+<section>
+<div class="table-wrapper">
 
-
-
-  제목 : <%= @matching.title %><br>
-  내용 : <%= @matching.content %> <br>
-  작성된 시간 : <%= @matching.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %><br>
-  작성자 : <%= @matching.user.name %><br>
+  <table>
+								<thead>
+								  <tr>
+								      <th>Title: <%= @matching.title %></th>
+                      <th>Time : <%= @matching.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %> </th>
+                      <th>User: <%=@matching.user.name %> </th>
+                  </tr>
+                  </table>
+                  
+   <%= @matching.content %><br/>
    <%= image_tag("#{@matching.image}") %>
+</div>
+
+<br /><br /><br />
+<div>  
    
    <% if can? :edit_matching, @matching %>
-       <a href="/matching/edit_matching/<%= @matching.id %>">[수정]</a> 
-   <%end%>
+   <span class="image left"><button><a href="/matching/edit_matching/<%= @matching.id %>">Edit Post</a></button></span>
+   <% end %>
    
     <% if can? :destroy_matching, @matching %>
         <form action="/matching/destroy_matching/<%= @matching.id %>" method="post">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <input type="submit" name="" value="삭제">
-        </form>
-        <hr />
-    <%end%>
- 
+        <span class="image left">
+   <input type="submit" name="" value="Delete Post">
+    </form>
+    </span>
+  </br></br>
+  <%end%>
+  </div>
+  <br />
+  <span class= "image right"><a href='/matching/home_matching' class = "button primary small"> Back to the list </a></span>  
+  <br/><br/>
+  <hr>
+	<h2>Comments</h2>	
   
-  <form action="/matchings/index_matching/<%= @matching.id %>/commentmatchings/create" method='get'>
-    <input type='text' name='input_comment'>
-    <input type='submit' value='댓글 작성'>
-  </form>
-
-    <a href='/matching/home_matching'>목록 </a></br></br>
-
 <% @commentmatchings.each do |comment| %>
-
-    <p><%= comment.content %> </p>
-    <p><%= comment.user.name %> </p>
-    
-    <% if can? :destroy, comment %>
-        <a href="/matchings/index_matching/<%=@matching.id%>/commentmatchings/destroy/<%= comment.id %>" data-confirm='댓글을 삭제합니다.'> [댓글 삭제] </a>
-    <%end%>
+<div class= "commentbox"> 
+  <p><b><%= comment.user.name %></b></p> 
+  <p><%= comment.content %></p>
+  <span class= "image right">
+  <ul>
+  <% if can? :destroy, comment %>
+  <a href="/matchings/index_matching/<%=@matching.id%>/commentmatchings/destroy/<%= comment.id %>" data-confirm='댓글을 삭제합니다.'>Delete </a>
+  <%end%>
     
     <% if can? :edit, comment %>
-        <a href="/matchings/index_matching/<%= @matching.id %>/commentmatchings/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
-    <%end%>
-
+    <a href="/matchings/index_matching/<%= @matching.id %>/commentmatchings/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> Edit </a> 
+  <%end%>
+  </ul>
+  </span>
+  <br/>
+  </div>
+   
 <% end %>
+
+<br/>
+<form action="/matchings/index_matching/<%= @matching.id %>/commentmatchings/create" method='get'>
+    <ul class="actions">
+  <input type='text' name='input_comment'><input type='submit' value='Write Comment'>
+   </ul>
+  </form>
+</section>
+  
+  
+  
+ 
 
  

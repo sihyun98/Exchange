@@ -1,41 +1,69 @@
+<section>
+<div class="table-wrapper">
 
-  제목 : <%= @club.title %><br>
-  내용 : <%= @club.content %>
-  작성자 : <%=@club.user.name%>
-  작성된 시간 : <%= @club.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %>
+  <table>
+			<thead>
+					<tr>
+					<th>Title: <%= @club.title %></th>
+                      <th>Time : <%= @club.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %> </th>
+                      <th>User: <%=@club.user.name %> </th>
+                  </tr>
+                  </table>
+                  
+   <%=@club.content %><br/>
    <%= image_tag("#{@club.image}") %>
+</div>
+
+<br /><br /><br />
+<div>  
+
   
   <% if can? :edit_club, @club %>
-  <a href="/club/edit_club/<%= @club.id %>">[수정]</a>
-  <% end %>
-  
+  <span class="image left"><button><a href="/club/edit_club/<%= @club.id %>">Edit Post</a></button></span>
+   <% end %>
+   
   <% if can? :destroy_club, @club %>
     <form action="/club/destroy_club/<%= @club.id %>" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <input type="submit" name="" value="삭제">
+    <span class="image left">
+   <input type="submit" name="" value="Delete Post">
     </form>
-    <hr />
+    </span>
+  </br></br>
   <%end%>
-  
- 
-<form action="/clubs/index_club/<%= @club.id %>/comment_clubs/create" method='get'>
-    <input type='text' name='input_comment'>
-    <input type='submit' value='댓글 작성'>
-</form>
- 
- <a href='/club/home_club'>목록 </a></br></br>
-  
+  </div>
+  <br />
+  <span class= "image right"><a href='/club/home_club' class = "button primary small"> Back to the list </a></span>  
+  <br/><br/>
+  <hr>
+	<h2>Comments</h2>	
+    
 <% @commentclubs.each do |comment| %>
-    <p><%= comment.content %></p>
-   
-     
-   
-    <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/destroy/<%= comment.id %>" data-confirm='댓글을 삭제합니다.'> [댓글삭제] </a>
-   
-    <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> [댓글수정] </a> 
+  <div class= "commentbox"> 
+  <p><b><%= comment.user.name %></b></p> 
+  <p><%= comment.content %></p>
+  <span class= "image right">
+  <ul>
+   <% if can? :destroy, comment %>
+  <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/destroy/<%= comment.id %>" data-confirm='댓글을 삭제합니다.'>Delete </a>
+  <%end%>
     
-    
+    <% if can? :edit, comment %>
+    <a href="/clubs/index_club/<%= @club.id %>/comment_clubs/edit/<%= comment.id %>" data-confirm='댓글을 수정합니다.'> Edit </a> 
+  <%end%>
+  </ul>
+  </span>
+  <br/>
+  </div>
    
-<% end %>
+<% end %>   
+      
+<br/>
+<form action="/clubs/index_club/<%= @club.id %>/comment_clubs/create"  method='get'>
+    <ul class="actions">
+  <input type='text' name='input_comment'><input type='submit' value='Write Comment'>
+   </ul>
+  </form>
+</section>
+  
  
-   

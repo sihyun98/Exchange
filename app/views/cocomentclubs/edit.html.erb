@@ -1,2 +1,15 @@
-<h1>Cocomentclubs#edit</h1>
-<p>Find me in app/views/cocomentclubs/edit.html.erb</p>
+<br/>
+<div class="box">
+    
+
+<h3>Edit your comment</h3>
+<form action="/clubs/index_club/<%= @club.id %>/commentclubs/update/<%=@commentclub.id%>" method='post'>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type='text' name='input_comment' value= '<%= @commentclub.content %>'>
+    <br/>
+    <span class = "image right">
+<input type='submit' value='Submit'></span>
+</form>
+<br/>
+<br/>
+</div>
