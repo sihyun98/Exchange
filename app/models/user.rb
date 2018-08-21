@@ -18,7 +18,10 @@ class User < ApplicationRecord
   has_many :commentinfos
   has_many :commentmatchings
   has_many :commentquestions
-  has_many :commentclubs
+  has_many :cocomentclubs
+  
+  #cocomet
+  has_many :cococlubs
   
   
   def assign_default_role

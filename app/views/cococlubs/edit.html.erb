@@ -1,0 +1,7 @@
+댓글 수정 화면
+
+<form action="/clubs/index_club/<%= @club.id %>/cocomentclubs/<%= @cocomentclub.id %>/cococlubs/<%=@cococlub.id%>/update" method='post'>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type='text' name='input_comment' value="<%=@cococlub.content %>">
+    <input type='submit' value='댓글 작성'>
+</form>

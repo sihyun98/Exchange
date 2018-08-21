@@ -1,0 +1,2 @@
+module CocoquestionsHelper
+end

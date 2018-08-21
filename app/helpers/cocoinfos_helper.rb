@@ -1,0 +1,2 @@
+module CocoinfosHelper
+end

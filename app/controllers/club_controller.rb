@@ -11,7 +11,7 @@ class ClubController < ApplicationController
   end
 
   def index_club
-    @commentclubs = @club.commentclubs
+    @cocomentclubs = @club.cocomentclubs
   end
 
 

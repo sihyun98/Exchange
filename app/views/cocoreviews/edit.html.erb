@@ -1,0 +1,9 @@
+
+댓글 수정 화면
+
+<form action="/reviews/index_review/<%= @review.id%>/coreviews/<%=@coreview.id%>/cocoreviews/<%=@cocoreview.id%>/update" method='post'>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type='text' name='input_comment' value="<%=@cocoreview.content%>">
+    <input type='submit' value='댓글 작성'>
+</form>
+ 

@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   
-  
- 
-  
   devise_for :users
+  
   get 'club/home_club', as: 'clubs'
   get 'club/new_club'
   post 'club/create_club'
@@ -11,10 +9,14 @@ Rails.application.routes.draw do
   post 'club/update_club/:club_id' => 'club#update_club'
   post 'club/destroy_club/:club_id' => 'club#destroy_club'
   get 'club/index_club/:club_id' => 'club#index_club'
-  get 'clubs/index_club/:club_id/comment_clubs/create' => 'comment_clubs#create'
-  get 'clubs/index_club/:club_id/comment_clubs/destroy/:commentclubs_id' => 'comment_clubs#destroy'
-  get 'clubs/index_club/:club_id/comment_clubs/edit/:commentclubs_id' =>'comment_clubs#edit'
-  post 'clubs/index_club/:club_id/comment_clubs/update/:commentclubs_id' =>'comment_clubs#update'
+  get 'clubs/index_club/:club_id/cocomentclubs/create' => 'cocomentclubs#create'
+  get 'clubs/index_club/:club_id/cocomentclubs/destroy/:cocomentclubs_id' => 'cocomentclubs#destroy'
+  get 'clubs/index_club/:club_id/cocomentclubs/edit/:cocomentclubs_id' =>'cocomentclubs#edit'
+  post 'clubs/index_club/:club_id/cocomentclubs/update/:cocomentclubs_id' =>'cocomentclubs#update'
+  get 'clubs/index_club/:club_id/cocomentclubs/:cocomentclub_id/cococlubs/create' => 'cococlubs#create'
+  get 'clubs/index_club/:club_id/cocomentclubs/:cocomentclub_id/cococlubs/:cococlub_id/destroy' => 'cococlubs#destroy'
+  get 'clubs/index_club/:club_id/cocomentclubs/:cocomentclub_id/cococlubs/:cococlub_id/edit' => 'cococlubs#edit'
+  post 'clubs/index_club/:club_id/cocomentclubs/:cocomentclub_id/cococlubs/:cococlub_id/update' => 'cococlubs#update'
   
   get 'matching/home_matching', as: 'matchings'
   get 'matching/new_matching'
@@ -27,7 +29,10 @@ Rails.application.routes.draw do
   get 'matchings/index_matching/:matching_id/commentmatchings/destroy/:commentmatchings_id' => 'commentmatchings#destroy'
   get 'matchings/index_matching/:matching_id/commentmatchings/edit/:commentmatchings_id' =>'commentmatchings#edit'
   post 'matchings/index_matching/:matching_id/commentmatchings/update/:commentmatchings_id' =>'commentmatchings#update'
-  
+  get 'matchings/index_matching/:matching_id/commentmatchings/:commentmatching_id/cocomatchings/create' => 'cocomatchings#create'
+  get 'matchings/index_matching/:matching_id/commentmatchings/:commentmatching_id/cocomatchings/:cocomatching_id/edit' => 'cocomatchings#edit'
+  post 'matchings/index_matching/:matching_id/commentmatchings/:commentmatching_id/cocomatchings/:cocomatching_id/update' => 'cocomatchings#update'
+  get 'matchings/index_matching/:matching_id/commentmatchings/:commentmatching_id/cocomatchings/:cocomatching_id/destroy' => 'cocomatchings#destroy'
   
   get 'info/home_info', as: 'infos'
   get 'info/new_info'
@@ -40,6 +45,10 @@ Rails.application.routes.draw do
   get 'infos/index_info/:info_id/commentinfos/destroy/:commentinfos_id' => 'commentinfos#destroy'
   get 'infos/index_info/:info_id/commentinfos/edit/:commentinfos_id' =>'commentinfos#edit'
   post 'infos/index_info/:info_id/commentinfos/update/:commentinfos_id' =>'commentinfos#update'
+  get 'infos/index_info/:info_id/commentinfos/:commentinfo_id/cocoinfos/create' => 'cocoinfos#create'
+  get 'infos/index_info/:info_id/commentinfos/:commentinfo_id/cocoinfos/:cocoinfo_id/edit' => 'cocoinfos#edit'
+  post 'infos/index_info/:info_id/commentinfos/:commentinfo_id/cocoinfos/:cocoinfo_id/update' => 'cocoinfos#update'
+  get 'infos/index_info/:info_id/commentinfos/:commentinfo_id/cocoinfos/:cocoinfo_id/destroy' => 'cocoinfos#destroy'
 
   get 'notice/home_notice'
   get 'notice/new_notice'
@@ -52,16 +61,17 @@ Rails.application.routes.draw do
   get 'notices/index_notice/:notice_id/comments/destroy/:comments_id' => 'comments#destroy'
   get 'notices/index_notice/:notice_id/comments/edit/:comments_id' =>'comments#edit'
   post 'notices/index_notice/:notice_id/comments/update/:comments_id' =>'comments#update'
-  
+  get 'notices/index_notice/:notice_id/comments/:comment_id/coconotices/create' => 'coconotices#create'
+  get 'notices/index_notice/:notice_id/comments/:comment_id/coconotices/:coconotice_id/edit' => 'coconotices#edit'
+  post 'notices/index_notice/:notice_id/comments/:comment_id/coconotices/:coconotice_id/update' => 'coconotices#update'
+  get 'notices/index_notice/:notice_id/comments/:comment_id/coconotices/:coconotice_id/destroy' => 'coconotices#destroy'
   
   get 'page/edit_page'
   get 'page/create_page'
   get 'page/home_page'
   get 'page/save_page'
   
-  
   get 'review/home_review', as: 'reviews'
-  post 'review/home_review'
   get 'review/new_review'
   post 'review/create_review'
   get 'review/index_review/:review_id' => 'review#index_review'
@@ -72,7 +82,10 @@ Rails.application.routes.draw do
   get 'reviews/index_review/:review_id/coreviews/destroy/:coreviews_id' => 'coreviews#destroy'
   get 'reviews/index_review/:review_id/coreviews/edit/:coreviews_id' =>'coreviews#edit'
   post 'reviews/index_review/:review_id/coreviews/update/:coreviews_id' =>'coreviews#update'
-  
+  get 'reviews/index_review/:review_id/coreviews/:coreview_id/cocoreviews/create' => 'cocoreviews#create'
+  get 'reviews/index_review/:review_id/coreviews/:coreview_id/cocoreviews/:cocoreview_id/edit' => 'cocoreviews#edit'
+  post 'reviews/index_review/:review_id/coreviews/:coreview_id/cocoreviews/:cocoreview_id/update' => 'cocoreviews#update'
+  get 'reviews/index_review/:review_id/coreviews/:coreview_id/cocoreviews/:cocoreview_id/destroy' => 'cocoreviews#destroy'
   
   get 'question/home_question', as: 'questions'
   get 'question/new_question'
@@ -85,6 +98,10 @@ Rails.application.routes.draw do
   get 'questions/index_question/:question_id/commentquestions/destroy/:commentquestions_id' => 'commentquestions#destroy'
   get 'questions/index_question/:question_id/commentquestions/edit/:commentquestions_id' =>'commentquestions#edit'
   post 'questions/index_question/:question_id/commentquestions/update/:commentquestions_id' =>'commentquestions#update'
+  get 'questions/index_question/:question_id/commentquestions/:commentquestion_id/cocoquestions/create' => 'cocoquestions#create'
+  get 'questions/index_question/:question_id/commentquestions/:commentquestion_id/cocoquestions/:cocoquestion_id/edit' => 'cocoquestions#edit'
+  post 'questions/index_question/:question_id/commentquestions/:commentquestion_id/cocoquestions/:cocoquestion_id/update' => 'cocoquestions#update'
+  get 'questions/index_question/:question_id/commentquestions/:commentquestion_id/cocoquestions/:cocoquestion_id/destroy' => 'cocoquestions#destroy'
   
   root 'main#index_main'
   get 'main/index_main'

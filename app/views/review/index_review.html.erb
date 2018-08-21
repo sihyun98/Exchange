@@ -57,6 +57,19 @@
   </ul>
   </span>
   <br/>
+  
+    <form action="/reviews/index_review/<%= @review.id%>/coreviews/<%=comment.id%>/cocoreviews/create" method='get'>
+    <input type='text' name='input_comment'>
+    <input type='submit' value='댓글 작성'>
+    </form>
+  
+  <% comment.cocoreviews.each do |p| %>
+    <%=p.content %>
+     <a href='/reviews/index_review/<%= @review.id%>/coreviews/<%=comment.id%>/cocoreviews/<%=p.id%>/edit'> 댓글 수정</a>
+     <a href='/reviews/index_review/<%= @review.id%>/coreviews/<%=comment.id%>/cocoreviews/<%=p.id%>/destroy'>댓글 삭제</a>
+  <%end%>
+  
+  
   </div>
   
   

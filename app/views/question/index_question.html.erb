@@ -55,6 +55,19 @@
   </ul>
   </span>
   <br/>
+  
+  <form action="/questions/index_question/<%= @question.id%>/commentquestions/<%=comment.id%>/cocoquestions/create" method='get'>
+    <input type='text' name='input_comment'>
+    <input type='submit' value='댓글 작성'>
+    </form>
+  
+  <% comment.cocoquestions.each do |p| %>
+    <%=p.content %>
+     <a href='/questions/index_question/<%= @question.id%>/commentquestions/<%=comment.id%>/cocoquestions/<%=p.id%>/edit'> 댓글 수정</a>
+     <a href='/questions/index_question/<%= @question.id%>/commentquestions/<%=comment.id%>/cocoquestions/<%=p.id%>/destroy'>댓글 삭제</a>
+  <%end%>
+  
+  
   </div>
   
   

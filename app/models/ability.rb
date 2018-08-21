@@ -40,11 +40,15 @@ class Ability
          can [:create], Commentmatching
          can [:edit, :update, :destroy], Commentmatching, user_id: user.id
          
-         can [:create], Commentclub
-         can [:edit, :update, :destroy], Commentclub, user_id: user.id
+         can [:create], Cocomentclub
+         can [:edit, :update, :destroy], Cocomentclub, user_id: user.id
          
          can [:create], Commentquestion
          can [:edit, :update, :destroy], Commentquestion, user_id: user.id
+         
+     #cocoment 권한
+         can [:create], Cococlub
+         can [:edit, :update, :destroy], Cococlub, user_id: user.id
          
          
          

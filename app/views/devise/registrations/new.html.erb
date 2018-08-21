@@ -28,6 +28,7 @@
 
   <div class="form-group">
     <%= f.label :name %>
+    <em>(First Name / Last Name)</em>
     <%= f.text_field :name, autofocus: true, class: 'form-control' %>
   </div>
   <br />
@@ -36,25 +37,22 @@
     <%= f.label :nationality %>
     <%= f.text_field :nationality, autofocus: true, class: 'form-control' %>
   </div>
-<br />
+  <br />
 
   <div class="form-group">
     <%= f.label :age %>
-    <%= f.number_field :age, autofocus: true, class: 'form-control' %>
+    <%= f.text_field :age, autofocus: true, class: 'form-control' %>
   </div>
+  <br>
+  
+  <div class="form-group">
+    <%= f.label :gender %>
+    <em>(F / M)</em>
+    <%= f.text_field :gender, autofocus: true, class: 'form-control' %>
+  </div>
+  <br />
   
   
- 
-
-  <div class="btn-group" data-toggle="buttons">
-    <p style="margin-bottom:0;"><%= f.label :gender %></p>
-      <label class="radio_button"> Male
-       <%= f.radio_button :gender, 'Male', checked: true %>
-      </label>
-      <label class="radio_button active"> Female
-       <%= f.radio_button :gender, 'Female', checked: true %>
-      </label>
-  </div></br>
 
   <span class="image right"> 
   <div class="actions">

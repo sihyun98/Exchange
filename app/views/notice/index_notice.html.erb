@@ -10,7 +10,7 @@
                   </tr>
                   </table>
                   
-   <%= @notice.content %>
+   <%= @notice.content %><br/>
    <%= image_tag("#{@notice.image}") %>
 </div>
 
@@ -54,6 +54,20 @@
   </ul>
   </span>
   <br/>
+  
+    <form action="/notices/index_notice/<%= @notice.id%>/comments/<%=p.id%>/coconotices/create" method='get'>
+    <input type='text' name='input_comment'>
+    <input type='submit' value='댓글 작성'>
+    </form>
+  
+  <% p.coconotices.each do |c| %>
+    <%=c.content %>
+     <a href='/notices/index_notice/<%= @notice.id%>/comments/<%=p.id%>/coconotices/<%=c.id%>/edit'> 댓글 수정</a>
+     <a href='/notices/index_notice/<%= @notice.id%>/comments/<%=p.id%>/coconotices/<%=c.id%>/destroy'>댓글 삭제</a>
+  <%end%>
+  
+  
+  
   </div>
   
   

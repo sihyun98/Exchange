@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_18_050908) do
+ActiveRecord::Schema.define(version: 2018_08_21_141744) do
 
   create_table "clubs", force: :cascade do |t|
     t.string "title"
@@ -22,26 +22,62 @@ ActiveRecord::Schema.define(version: 2018_08_18_050908) do
     t.index ["user_id"], name: "index_clubs_on_user_id"
   end
 
+  create_table "cococlubs", force: :cascade do |t|
+    t.string "content"
+    t.integer "cocomentclub_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cocomentclub_id"], name: "index_cococlubs_on_cocomentclub_id"
+  end
+
+  create_table "cocoinfos", force: :cascade do |t|
+    t.string "content"
+    t.integer "commentinfo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentinfo_id"], name: "index_cocoinfos_on_commentinfo_id"
+  end
+
+  create_table "cocomatchings", force: :cascade do |t|
+    t.string "content"
+    t.integer "commentmatching_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentmatching_id"], name: "index_cocomatchings_on_commentmatching_id"
+  end
+
   create_table "cocomentclubs", force: :cascade do |t|
     t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "comment_infos", force: :cascade do |t|
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "commentclubs", force: :cascade do |t|
-    t.string "content"
-    t.integer "user_id"
     t.integer "club_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["club_id"], name: "index_commentclubs_on_club_id"
-    t.index ["user_id"], name: "index_commentclubs_on_user_id"
+    t.index ["club_id"], name: "index_cocomentclubs_on_club_id"
+    t.index ["user_id"], name: "index_cocomentclubs_on_user_id"
+  end
+
+  create_table "coconotices", force: :cascade do |t|
+    t.string "content"
+    t.integer "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_coconotices_on_comment_id"
+  end
+
+  create_table "cocoquestions", force: :cascade do |t|
+    t.string "content"
+    t.integer "commentquestion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentquestion_id"], name: "index_cocoquestions_on_commentquestion_id"
+  end
+
+  create_table "cocoreviews", force: :cascade do |t|
+    t.string "content"
+    t.integer "coreview_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coreview_id"], name: "index_cocoreviews_on_coreview_id"
   end
 
   create_table "commentinfos", force: :cascade do |t|
