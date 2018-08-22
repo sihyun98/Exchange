@@ -1,7 +1,10 @@
 class CocoquestionsController < ApplicationController
+  load_and_authorize_resource
+  
   def create
     
     @cocoquestion = Cocoquestion.new
+    @cocoquestion.user_id = current_user.id
     @cocoquestion.content = params[:input_comment]                    
     @cocoquestion.commentquestion_id = params[:commentquestion_id]
     @cocoquestion.save
@@ -16,7 +19,7 @@ class CocoquestionsController < ApplicationController
   end
 
   def edit
-     @question=Info.find(params[:question_id])
+     @question=Question.find(params[:question_id])
      @commentquestion = Commentquestion.find(params[:commentquestion_id])
      @cocoquestion = Cocoquestion.find(params[:cocoquestion_id])
   end

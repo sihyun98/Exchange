@@ -22,6 +22,11 @@ class User < ApplicationRecord
   
   #cocomet
   has_many :cococlubs
+  has_many :cocoinfos
+  has_many :cocomatchings
+  has_many :coconotices
+  has_many :cocoquestions
+  has_many :cocoreviews
   
   
   def assign_default_role

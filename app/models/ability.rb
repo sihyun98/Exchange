@@ -50,6 +50,21 @@ class Ability
          can [:create], Cococlub
          can [:edit, :update, :destroy], Cococlub, user_id: user.id
          
+         can [:create], Cocoinfo
+         can [:edit, :update, :destroy], Cocoinfo, user_id: user.id
+         
+         can [:create], Cocomatching
+         can [:edit, :update, :destroy], Cocomatching, user_id: user.id
+         
+         can [:create], Cocoquestion
+         can [:edit, :update, :destroy], Cocoquestion, user_id: user.id
+         
+         can [:create], Cocoreview
+         can [:edit, :update, :destroy], Cocoreview, user_id: user.id
+         
+         can [:create], Coconotice
+         can [:edit, :update, :destroy], Coconotice, user_id: user.id
+         
          
          
     end

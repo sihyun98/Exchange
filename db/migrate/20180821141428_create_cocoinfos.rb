@@ -4,6 +4,7 @@ class CreateCocoinfos < ActiveRecord::Migration[5.2]
       t.string :content
       t.belongs_to :commentinfo
       t.integer :commentinfo_id
+      t.belongs_to :user
 
       t.timestamps
     end

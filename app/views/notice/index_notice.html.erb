@@ -5,7 +5,7 @@
 								<thead>
 								  <tr>
 								      <th>Title: <%= @notice.title %></th>
-                      <th>Time : <%= @notice.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %> </th>
+                      <th>Time : <%= @notice.created_at.strftime("%Y-%m-%d %H:%M") %> </th>
                       <th>User: <%=@notice.user.name %> </th>
                   </tr>
                   </table>
@@ -23,13 +23,13 @@
   <% if can? :destroy_notice, @notice %>
     <form action="/notice/destroy_notice/<%= @notice.id %>" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-   <span class="image left">
-   <input type="submit" name="" value="Delete Post">
+    <span class="image left">
+    <input type="submit" name="" value="Delete Post">
     </form>
     </span>
   </br></br>
   <%end%>
-  </div>
+</div>
   
   <br />
   <span class= "image right"><a href='/notice/home_notice' class = "button primary small"> Back to the list </a></span>  
@@ -38,45 +38,51 @@
 	<h2>Comments</h2>							
 
 <% @comments.each do |p| %>
-<div class= "commentbox"> 
-  <p><b><%= p.user.name %></b></p> 
-  
+  <div class= "commentbox"> 
+  <p><b><%= p.user.name %></b></p>
   <p><%= p.content %></p>
+  <!--추가-->
+  <p><%= p.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+
   <span class= "image right">
-  <ul>
-  <% if can? :destroy, p %>
-  <a href="/notices/index_notice/<%= @notice.id %>/comments/destroy/<%= p.id %>" data-confirm='댓글을 삭제합니다.'>Delete </a>
-  <%end%>
+   <ul>
+   <% if can? :destroy, p %>
+   <a href="/notices/index_notice/<%= @notice.id %>/comments/destroy/<%= p.id %>" data-confirm='댓글을 삭제합니다.'>Delete </a>
+   <%end%>
   
-  <% if can? :edit, p %>
-  <a href="/notices/index_notice/<%= @notice.id %>/comments/edit/<%= p.id %>" data-confirm='댓글을 수정합니다.'> Edit </a> 
-  <%end%>
-  </ul>
+   <% if can? :edit, p %>
+   <a href="/notices/index_notice/<%= @notice.id %>/comments/edit/<%= p.id %>" data-confirm='댓글을 수정합니다.'> Edit </a> 
+   <%end%>
+   </ul>
   </span>
   <br/>
   
-    <form action="/notices/index_notice/<%= @notice.id%>/comments/<%=p.id%>/coconotices/create" method='get'>
-    <input type='text' name='input_comment'>
-    <input type='submit' value='댓글 작성'>
-    </form>
+  <form action="/notices/index_notice/<%= @notice.id%>/comments/<%=p.id%>/coconotices/create" method='get'>
+  <input type='text' name='input_comment'>
+  <input type='submit' value='댓글 작성'>
+  </form>
   
   <% p.coconotices.each do |c| %>
-    <%=c.content %>
+      <%=c.content %>
+      <%= c.user.name %>
+      <%= c.created_at.strftime("%Y-%m-%d %H:%M") %>
+     
+     <% if can? :destroy, c %>
      <a href='/notices/index_notice/<%= @notice.id%>/comments/<%=p.id%>/coconotices/<%=c.id%>/edit'> 댓글 수정</a>
+     <%end%>
+      
+     <% if can? :edit, c %>
      <a href='/notices/index_notice/<%= @notice.id%>/comments/<%=p.id%>/coconotices/<%=c.id%>/destroy'>댓글 삭제</a>
+     <%end%>
   <%end%>
-  
-  
-  
   </div>
-  
   
 <% end %>
 
 <br/>
-<form action="/notices/index_notice/<%= @notice.id %>/comments/create" method='get'>
+  <form action="/notices/index_notice/<%= @notice.id %>/comments/create" method='get'>
     <ul class="actions">
-  <input type='text' name='input_comment'><input type='submit' value='Write Comment'>
-   </ul>
+    <input type='text' name='input_comment'><input type='submit' value='Write Comment'>
+    </ul>
   </form>
 </section>

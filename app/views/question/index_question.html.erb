@@ -5,7 +5,7 @@
 								<thead>
 								  <tr>
 								      <th>Title: <%= @question.title %></th>
-                      <th>Time : <%= @question.created_at.strftime("%Y년 %m월 %d일 %H시%M분") %> </th>
+                      <th>Time : <%= @question.created_at.strftime("%Y-%m-%d %H:%M") %> </th>
                       <th>User: <%=@question.user.name %> </th>
                   </tr>
                   </table>
@@ -41,8 +41,11 @@
   <% @commentquestions.each do |comment| %>
   <div class= "commentbox"> 
   <p><b><%= comment.user.name %></b></p> 
-
   <p><%= comment.content %></p>
+  <!--추가-->
+  <p><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+
+  
   <span class= "image right">
   <ul>
   <% if can? :destroy, comment %>
@@ -63,8 +66,15 @@
   
   <% comment.cocoquestions.each do |p| %>
     <%=p.content %>
+    <%= p.user.name %>
+    <%= p.created_at.strftime("%Y-%m-%d %H:%M") %>
+      <% if can? :destroy, p %>
      <a href='/questions/index_question/<%= @question.id%>/commentquestions/<%=comment.id%>/cocoquestions/<%=p.id%>/edit'> 댓글 수정</a>
+     <%end%>
+      
+      <% if can? :edit, p %>
      <a href='/questions/index_question/<%= @question.id%>/commentquestions/<%=comment.id%>/cocoquestions/<%=p.id%>/destroy'>댓글 삭제</a>
+     <%end%>
   <%end%>
   
   

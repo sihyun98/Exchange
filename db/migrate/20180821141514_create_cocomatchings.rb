@@ -4,6 +4,7 @@ class CreateCocomatchings < ActiveRecord::Migration[5.2]
       t.string :content
       t.belongs_to :commentmatching
      t.integer :commentmatching_id
+     t.belongs_to :user
 
       t.timestamps
     end

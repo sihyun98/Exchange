@@ -54,7 +54,7 @@ class MatchingController < ApplicationController
   private
   
   def matching_params
-    params.require(:matching).permit(:title, :content, :user_id, :image)
+    params.require(:matching).permit(:title, :content, :user_id, :image, :check)
   end
   
   def set_matching

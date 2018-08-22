@@ -18,19 +18,17 @@
     <%= f.label :image %>
     <%= f.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
   </div><br>
-  <span class="image right">
-    
-  <%= radio_button_tag(:check, "open") %>
-  <%= label_tag(:check_open, "모집중") %>
-  <%= radio_button_tag(:check, "done") %>
-  <%= label_tag(:check_done, "모집완료") %>
-  </br></br>
+  <div class="field">
+    <label>Condition (Open or Done)</label>
+    <%= f.text_field :check %>
+  </div>
   
+  <br><br>
+  <span class="image right">
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-
 
  </span>
 <br/><br/>

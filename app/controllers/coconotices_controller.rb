@@ -1,7 +1,10 @@
 class CoconoticesController < ApplicationController
+  
+  load_and_authorize_resource
   def create
     
     @coconotice = Coconotice.new
+    @coconotice.user_id = current_user.id
     @coconotice.content = params[:input_comment]                    
     @coconotice.comment_id = params[:comment_id]
     @coconotice.save

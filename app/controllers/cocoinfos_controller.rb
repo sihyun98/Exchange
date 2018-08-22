@@ -1,7 +1,9 @@
 class CocoinfosController < ApplicationController
+   load_and_authorize_resource
   def create
     
     @cocoinfo = Cocoinfo.new
+    @cocoinfo.user_id = current_user.id
     @cocoinfo.content = params[:input_comment]                    
     @cocoinfo.commentinfo_id = params[:commentinfo_id]
     @cocoinfo.save

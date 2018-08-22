@@ -1,7 +1,9 @@
 class CocoreviewsController < ApplicationController
+  load_and_authorize_resource
   def create
     
     @cocoreview = Cocoreview.new
+    @cocoreview.user_id = current_user.id
     @cocoreview.content = params[:input_comment]                    
     @cocoreview.coreview_id = params[:coreview_id]
     @cocoreview.save

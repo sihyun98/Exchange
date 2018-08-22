@@ -4,6 +4,7 @@ class CreateCocoquestions < ActiveRecord::Migration[5.2]
       t.string :content
       t.belongs_to :commentquestion
       t.integer :commentquestion_id
+      t.belongs_to :user
 
       t.timestamps
     end

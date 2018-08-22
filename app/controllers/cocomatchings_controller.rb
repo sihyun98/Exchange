@@ -1,7 +1,10 @@
 class CocomatchingsController < ApplicationController
+  
+  load_and_authorize_resource
   def create
     
     @cocomatching = Cocomatching.new
+    @cocomatching.user_id = current_user.id
     @cocomatching.content = params[:input_comment]                    
     @cocomatching.commentmatching_id = params[:commentmatching_id]
     @cocomatching.save
