@@ -1,3 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <style>
+
+
+.bubble{
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #B2B2B2;
+    display: inline-block;
+    padding: 10px 18px;
+    position: relative;
+    vertical-align: top;
+        float: left;   
+    margin: 5px 45px 5px 20px;   
+}
+
+.bubble::before {
+    background-color: #F2F2F2;
+    content: "\00a0";
+    display: block;
+    height: 16px;
+    position: absolute;
+    top: 11px;
+    transform:             rotate( 29deg ) skew( -35deg );
+        -moz-transform:    rotate( 29deg ) skew( -35deg );
+        -ms-transform:     rotate( 29deg ) skew( -35deg );
+        -o-transform:      rotate( 29deg ) skew( -35deg );
+        -webkit-transform: rotate( 29deg ) skew( -35deg );
+    width:  20px;
+     box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    left: -9px;  
+}
+
+
+    </style>
 <section>
 <div class="table-wrapper">
 
@@ -57,17 +93,15 @@
   <%end%>
   </ul>
   </span>
-  <br/>
   
-  <form action="/questions/index_question/<%= @question.id%>/commentquestions/<%=comment.id%>/cocoquestions/create" method='get'>
-    <input type='text' name='input_comment'>
-    <input type='submit' value='댓글 작성'>
-    </form>
   
   <% comment.cocoquestions.each do |p| %>
-    <%=p.content %>
-    <%= p.user.name %>
-    <%= p.created_at.strftime("%Y-%m-%d %H:%M") %>
+    <div class="bubble">
+       <b><%= p.user.name %> :  </b>
+       <b><%= p.content %></b> </br>
+       <%= p.created_at.strftime("%Y-%m-%d %H:%M") %>
+       </div>
+       </br></br>
       <% if can? :destroy, p %>
      <a href='/questions/index_question/<%= @question.id%>/commentquestions/<%=comment.id%>/cocoquestions/<%=p.id%>/edit'> 댓글 수정</a>
      <%end%>
@@ -75,8 +109,12 @@
       <% if can? :edit, p %>
      <a href='/questions/index_question/<%= @question.id%>/commentquestions/<%=comment.id%>/cocoquestions/<%=p.id%>/destroy'>댓글 삭제</a>
      <%end%>
+     </br></br>
   <%end%>
-  
+    <form action="/questions/index_question/<%= @question.id%>/commentquestions/<%=comment.id%>/cocoquestions/create" method='get'>
+    <input type='text' name='input_comment'>
+    <input type='submit' value='댓글 작성'>
+    </form>
   
   </div>
   
