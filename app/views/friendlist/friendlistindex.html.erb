@@ -1,3 +1,29 @@
-Find you friends | 친구찾기
-<br/>
-친구리스트 쫙 보여주기
+<h1>Friend List</h1>
+
+
+<table>
+    <tr>
+        <th>Index</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+    </tr>
+    <tr> 
+    <% @users.each_with_index do |user, index| %>
+        <td><%= index +=1 %></td> 
+        <td>
+            <% if user.email == current_user.email %>
+                <a href='/page/home_page'> <%= user.name %> (Me) </a>
+            <% else %>
+                <%= user.name %>
+            <% end %>
+        </td> 
+        <td><%= user.email %></td>
+        <td> 
+            <a href='https://mail.naver.com/'> NAVER </a>
+            <a href='http://gmail.com/'> GMAIL </a>
+        </td> 
+    </tr> 
+    <% end %>
+    </table>
+
